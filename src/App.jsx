@@ -1,11 +1,11 @@
 import './App.css'
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import Scheduler from './components/Scheduler'
 
 function App() {
 
   return (
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <Scheduler />
   )
 }
 
