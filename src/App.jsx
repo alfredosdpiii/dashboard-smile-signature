@@ -2,6 +2,7 @@ import './App.css'
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Scheduler from './components/Scheduler'
 import Sidebar from './utils/Sidebar'
+import Login from './components/Login';
 
 function App() {
 
