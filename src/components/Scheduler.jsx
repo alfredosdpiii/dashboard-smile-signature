@@ -44,7 +44,7 @@ const Scheduler = () => {
             </div>
             <div className="flex items-center">
               <button 
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
               onClick={handleSetAppointment}
               >
                 Set an appointment
@@ -61,6 +61,7 @@ const Scheduler = () => {
           </div>
         </div>
       </div>
+      
       {isScheduling && (
         <SchedModal setIsScheduling={setIsScheduling}/>
       )}
