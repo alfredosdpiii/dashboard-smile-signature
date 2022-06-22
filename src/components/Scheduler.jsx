@@ -36,9 +36,8 @@ const Scheduler = () => {
   return (
     <>
         <div className="flex flex-col">
-          <div className="flex justify-between h-20 border-y-2 px-5">
+          <div className="flex justify-between h-20 w-[109em] border-b-2 px-5">
             <div>
-              <img src={logo2} width="80" height="50" />
             </div>
             <div className="flex items-center">
               <button
@@ -54,7 +53,7 @@ const Scheduler = () => {
               localizer={localizer}
               startAccessor="start"
               endAccessor="end"
-              style={{ height: '55em', width: '101em', margin: "5px" }}
+              style={{ height: '55em', width: '109em', margin: "5px" }}
             />
           </div>
         </div>

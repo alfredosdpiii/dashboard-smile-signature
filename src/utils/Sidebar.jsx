@@ -3,27 +3,27 @@ import logo2 from '../assets/images/logo2.png'
 
 const Sidebar = () => {
   return (
-    <aside className="w-{38} h-screen">
-      <div className="sticky top-0 p-4 w-full h-screen">
-        <div className="flex flex-col overflow-hidden justify-start align-middle h-screen">
-          <div className="items-center">
+    <aside className="w-{38} h-full">
+      <div className="sticky top-0 p-4 w-full h-full">
+        <div className="flex flex-col overflow-hidden justify-start align-middle h-full">
+          <div className="flex justify-center items-center">
             <img src={logo2} width="80" height="80" />
           </div>
 
           <ul className="flex flex-col">
-            <li className="list-none py-8 px-5">
+            <li className="list-none py-8 px-5 border-y-2">
               Overview
             </li>
-            <li className="list-none py-8 px-5">
+            <li className="list-none py-8 px-5 border-b-2">
               Calendar
             </li>
-            <li className="list-none py-8 px-5">
+            <li className="list-none py-8 px-5 border-b-2">
               Patient list
             </li>
-            <li className="list-none py-8 px-5">
+            <li className="list-none py-8 px-5 border-b-2">
               Staff list
             </li>
-            <li className="list-none py-8 px-5">
+            <li className="list-none py-8 px-5 border-b-2">
               Transactions
             </li>
           </ul>
