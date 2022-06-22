@@ -8,6 +8,7 @@ import logo1 from '../logo1.png'
 import logo2 from '../logo2.png'
 
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import SchedModal from "./SchedModal";
 
 
 const locales = {
@@ -25,6 +26,12 @@ const localizer = dateFnsLocalizer({
 
 
 const Scheduler = () => {
+  const [isScheduling, setIsScheduling] = useState(false)
+
+  const handleSetAppointment = () => {
+    setIsScheduling(!isScheduling)
+    console.log(isScheduling)
+  }
 
   return (
     <>
@@ -36,7 +43,10 @@ const Scheduler = () => {
               <img src={logo2} width="80" height="50" />
             </div>
             <div className="flex items-center">
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+              <button 
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              onClick={handleSetAppointment}
+              >
                 Set an appointment
               </button>
             </div>
@@ -51,6 +61,9 @@ const Scheduler = () => {
           </div>
         </div>
       </div>
+      {isScheduling && (
+        <SchedModal setIsScheduling={setIsScheduling}/>
+      )}
     </>
   )
 }
