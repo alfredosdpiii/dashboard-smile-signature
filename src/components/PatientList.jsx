@@ -26,8 +26,17 @@ function PatientList() {
         const patients = response.data;
   
         console.log("Patients: ", patients);
-        setPatients(patients);
-        getData(patients)
+        const new_patients = []
+        patients.map((patient) => {
+          const new_object = {
+            ...patient,
+            imgAvatar: patient.gender === 'Male' ? maleIcon : femaleICon
+          }
+          new_patients.push(new_object)
+        })
+        
+        setPatients(new_patients);
+        getData(new_patients)
       }
     };
 
@@ -38,9 +47,9 @@ function PatientList() {
     },
     {
       Header: "Name",
-      accessor: 'name',
+      accessor: 'full_name',
       Cell: AvatarCell,
-      imgAccessor: "imgUrl",
+      imgAccessor: "imgAvatar",
       emailAccessor: "email",
     },
     {
