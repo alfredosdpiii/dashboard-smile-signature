@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import dayjs from 'dayjs';
 // import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 // import DatePicker from 'react-modern-calendar-datepicker';
 
 
 const PatientRegister = ({ setIsAddingPatient }) => {
-  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [selectedDay, setSelectedDay] = useState("");
   const [showCalendar, setShowCalendar] = useState(false)
+
+  const handleCalendarChange = (value) =>{
+    setSelectedDay(value)
+    setShowCalendar(!showCalendar)
+  }
 
 
   return (
@@ -43,11 +49,19 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                     </option>
                   </select>
                 </div>
-                <div className='flex flex-col text-black py-2' onClick={()=> setShowCalendar(!showCalendar)}>
+                <div className='flex flex-col text-black py-2'>
                   <label className='black'>Date of Birth</label>
-                  <input className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none' type={'text'} onChange={setSelectedDay} value={selectedDay}/>
+                    <input className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none' 
+                      type={'text'} 
+                      onChange={setSelectedDay} 
+                      value={selectedDay}
+                      onClick={()=> setShowCalendar(!showCalendar)}
+                    />
                   {showCalendar && (
-                  <Calendar onChange={setSelectedDay} value={selectedDay} className='w-[27.3em] rounded-lg absolute bottom-[118px]'/>
+                  <Calendar 
+                  onChange={(value) => handleCalendarChange(value)} 
+                  value={selectedDay} 
+                  className='w-[27.3em] rounded-lg absolute bottom-[118px]' />
                   )}
                 </div>
                 <div className='flex flex-col text-black py-2'>
