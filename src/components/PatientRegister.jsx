@@ -8,7 +8,11 @@ import 'react-calendar/dist/Calendar.css';
 const PatientRegister = ({ setIsAddingPatient }) => {
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false)
-  const [valueChanged, setValueChanged] = useState(selectedDay)
+
+  const handleCalendarChange = (value) =>{
+    setSelectedDay(value)
+    setShowCalendar(!showCalendar)
+  }
 
 
   return (
@@ -53,7 +57,7 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                       onClick={()=> setShowCalendar(!showCalendar)}
                     />
                   {showCalendar && (
-                  <Calendar onChange={setSelectedDay} value={selectedDay} className='w-[27.3em] rounded-lg absolute bottom-[118px]' onClickDay={()=> setShowCalendar(!showCalendar)}/>
+                  <Calendar onChange={(value) => handleCalendarChange(value)} value={selectedDay} className='w-[27.3em] rounded-lg absolute bottom-[118px]' />
                   )}
                 </div>
                 <div className='flex flex-col text-black py-2'>
