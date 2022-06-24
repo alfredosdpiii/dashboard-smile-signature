@@ -8,10 +8,10 @@ import { Button } from '../utils/Button'
 import { useState } from 'react';
 import axios from 'axios';
 
-const getData = () => {
+const getData = (patients) => {
 
-  const data = []
-  return [...data, ...data, ...data]
+  const data = [...patients]
+  return [...data]
 }
 
 function PatientList() {
@@ -27,7 +27,7 @@ function PatientList() {
   
         console.log("Patients: ", patients);
         setPatients(patients);
-        
+        getData(patients)
       }
     };
 
@@ -70,7 +70,7 @@ function PatientList() {
     }
   ], [])
 
-  const data = React.useMemo(() => getData(), [])
+  const data = React.useMemo(() => getData(patients), [])
 
   useEffect(() => {
     fetchPatients()
