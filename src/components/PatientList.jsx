@@ -58,7 +58,7 @@ function PatientList() {
     },
     {
       Header: "Date of Birth",
-      accessor: 'dob',
+      accessor: 'date_of_birth',
     },
     {
       Header: "Mobile",
@@ -66,16 +66,15 @@ function PatientList() {
     },
     {
       Header: "Address",
-      accessor: 'address1',
-      secondAccessor: 'address2',
+      accessor: 'address',
     },
     {
       Header: "Record",
-      Cell: <button className ='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>Record</button>
+      Cell: <button className ='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg'>Record</button>
     },
     {
       Header: "Transactions",
-      Cell: <button className ='bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-full'>Transactions</button>
+      Cell: <button className ='bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded-lg'>Transactions</button>
     }
   ], [])
 

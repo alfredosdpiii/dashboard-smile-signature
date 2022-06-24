@@ -18,8 +18,8 @@ function GlobalFilter({
   }, 200)
 
   return (
-    <label className="flex gap-x-3 items-baseline">
-      <span className="text-gray-700">Search: </span>
+    <label className="flex gap-x-3 items-baseline justify-between">
+      <div className="text-gray-700">Search: </div>
       <input
         type="text"
         className="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 py-1 px-1"
@@ -132,12 +132,16 @@ function Table({ columns, data }) {
   // Render the UI for your table
   return (
     <>
-      <div className="sm:flex sm:gap-x-2">
+      <div className="sm:flex sm:gap-x-2 flex justify-between">
         <GlobalFilter
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
+        <button 
+        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
+          Register Patient
+        </button>
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (
