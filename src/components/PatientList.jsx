@@ -9,37 +9,10 @@ import { useState } from 'react';
 import axios from 'axios';
 import PatientRegister from './PatientRegister';
 
-const getData = (patients) => {
 
-  const data = [...patients]
-  return [...data]
-}
 
 function PatientList() {
   const [patients, setPatients] = useState([])
-
-  const fetchPatients = async () => {
-    const response = await axios
-      .get("http://127.0.0.1:3001/patient_records")
-      .catch((err) => console.log(err));
-
-      if (response) {
-        const patients = response.data;
-  
-        console.log("Patients: ", patients);
-        const new_patients = []
-        patients.map((patient) => {
-          const new_object = {
-            ...patient,
-            imgAvatar: patient.gender === 'Male' ? maleIcon : femaleICon
-          }
-          new_patients.push(new_object)
-        })
-        
-        setPatients(new_patients);
-        getData(new_patients)
-      }
-    };
 
   const columns = React.useMemo(() => [ 
     {
@@ -79,10 +52,25 @@ function PatientList() {
     }
   ], [])
 
-  const data = React.useMemo(() => getData(patients), [])
+  const data = patients
 
   useEffect(() => {
-    fetchPatients()
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/patient_records'
+    }).then((res) => {
+      const patients = res.data;
+      const new_patients = []
+      patients.map((patient) => {
+        const new_object = {
+          ...patient,
+          imgAvatar: patient.gender === 'Male' ? maleIcon : femaleICon
+        }
+        new_patients.push(new_object)
+      })
+      
+      setPatients(new_patients);
+    })
   }, [])
 
   return (
