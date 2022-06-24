@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+// import 'react-calendar/dist/Calendar.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import dayjs from 'dayjs';
 // import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 // import DatePicker from 'react-modern-calendar-datepicker';
@@ -51,18 +53,12 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                 </div>
                 <div className='flex flex-col text-black py-2'>
                   <label className='black'>Date of Birth</label>
-                    <input className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none' 
-                      type={'text'} 
-                      onChange={setSelectedDay} 
-                      value={selectedDay}
-                      onClick={()=> setShowCalendar(!showCalendar)}
-                    />
-                  {showCalendar && (
-                  <Calendar 
-                  onChange={(value) => handleCalendarChange(value)} 
-                  value={selectedDay} 
-                  className='w-[27.3em] rounded-lg absolute bottom-[118px]' />
-                  )}
+                  <DatePicker 
+                  selected={selectedDay} 
+                  closeOnScroll={true}
+                  onChange={(date) => setSelectedDay(date)}
+                  className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:text-white focus:outline-none w-full'
+                  />
                 </div>
                 <div className='flex flex-col text-black py-2'>
                   <label className='black'>Email</label>
