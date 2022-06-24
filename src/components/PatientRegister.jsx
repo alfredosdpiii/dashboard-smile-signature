@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import dayjs from 'dayjs';
 // import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 // import DatePicker from 'react-modern-calendar-datepicker';
 
 
 const PatientRegister = ({ setIsAddingPatient }) => {
-  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [selectedDay, setSelectedDay] = useState("");
   const [showCalendar, setShowCalendar] = useState(false)
 
   const handleCalendarChange = (value) =>{
@@ -57,7 +58,10 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                       onClick={()=> setShowCalendar(!showCalendar)}
                     />
                   {showCalendar && (
-                  <Calendar onChange={(value) => handleCalendarChange(value)} value={selectedDay} className='w-[27.3em] rounded-lg absolute bottom-[118px]' />
+                  <Calendar 
+                  onChange={(value) => handleCalendarChange(value)} 
+                  value={selectedDay} 
+                  className='w-[27.3em] rounded-lg absolute bottom-[118px]' />
                   )}
                 </div>
                 <div className='flex flex-col text-black py-2'>
