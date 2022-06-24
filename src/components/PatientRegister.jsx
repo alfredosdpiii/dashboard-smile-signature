@@ -1,32 +1,14 @@
 import { useState } from 'react'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import DatePicker from 'react-modern-calendar-datepicker';
+// import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+// import DatePicker from 'react-modern-calendar-datepicker';
 
 
 const PatientRegister = ({ setIsAddingPatient }) => {
-  const[selectedDay, setSelectedDay] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [showCalendar, setShowCalendar] = useState(false)
 
-  const renderCustomInput = ({ ref }) => (
-    <input
-      readOnly
-      ref={ref} // necessary
-      placeholder="Select a date"
-      value={selectedDay ? `✅: ${selectedDay.day}` : ''}
-      style={{
-        textAlign: 'center',
-        padding: '1rem 1.5rem',
-        fontSize: '1.5rem',
-        border: '1px solid #9c88ff',
-        borderRadius: '100px',
-        boxShadow: '0 1.5rem 2rem rgba(156, 136, 255, 0.2)',
-        color: '#9c88ff',
-        outline: 'none',
-      }}
-      className="my-custom-input-class" // a styling class
-    />
-  )
 
   return (
     <>
@@ -39,14 +21,14 @@ const PatientRegister = ({ setIsAddingPatient }) => {
               <h3 className="text-3xl font-semibold">
                 Let's add a Patient 🎉
               </h3>
-              </div>
-              {/*body*/}
-              <div className="relative p-2 flex-auto">
+            </div>
+            {/*body*/}
+            <div className="relative p-2 flex-auto">
               <form className='max-w-[500px] w-full mx-auto bg-white p-8 px-8 rounded-lg'>
-              <div className='flex flex-col text-black py-2'>
+                <div className='flex flex-col text-black py-2'>
                   <label className='black'>Full Name</label>
                   <input className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none' type="text" />
-              </div>
+                </div>
                 <div className='flex flex-col text-black py-2'>
                   <label className='black'>Gender</label>
                   <select className='rounded-lg bg-gray-200 mt-2 p-2'>
@@ -63,13 +45,10 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                 </div>
                 <div className='flex flex-col text-black py-2'>
                   <label className='black'>Date of Birth</label>
-                  <DatePicker
-                    value={selectedDay}
-                    onChange={setSelectedDay}
-                    inputPlaceholder="Select a day"
-                    inputClassName='w-full rounded-lg bg-gray-200 mt-2 p-2'
-                    shouldHighlightWeekends
-                  />
+                  <input type={'text'} onChange={setSelectedDay} value={selectedDay} onClick={()=> setShowCalendar(true)} />
+                  {showCalendar && (
+                  <Calendar onChange={setSelectedDay} value={selectedDay} />
+                  )}
                 </div>
                 <div className='flex flex-col text-black py-2'>
                   <label className='black'>Email</label>
@@ -84,21 +63,21 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                   <input className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none' type="password" />
                 </div>
                 <button className='w-full my-5 py-2 bg-teal-500 shadow-lg shadw-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'>Register</button>
-               </form>
-              </div>
-              {/*footer*/}
-              <div className="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
-                <button
-                  className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                  onClick={() => setIsAddingPatient(false)}
-                >
-                  Close
-                </button>
-              </div>
+              </form>
+            </div>
+            {/*footer*/}
+            <div className="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
+              <button
+                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={() => setIsAddingPatient(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
+      </div>
       <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
     </>
   )

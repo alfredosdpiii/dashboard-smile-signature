@@ -14,7 +14,8 @@ function App() {
         <main role="main" className="w-3/4 sm:w-2/3 md:w-3/4 pt-1 px-2">
           {/* <Scheduler /> */}
           {/* <PatientList /> */}
-          <PatientList />
+          {/* <PatientList /> */}
+          <PatientRegister />
         </main>
       </div>
   )
