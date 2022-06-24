@@ -1,93 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'regenerator-runtime/runtime';
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from './Table'
 import maleIcon from '../assets/icons/male-avatar.jpg'
 import femaleICon from '../assets/icons/female-avatar.webp'
 import Moment from 'moment';
 import { Button } from '../utils/Button'
+import { useState } from 'react';
+import axios from 'axios';
 
 const getData = () => {
 
-  const data = [
-    {
-      id: 1,
-      name: 'Jake Pogi',
-      email: 'jake@jakey.com',
-      dob: Moment("1960/08/22").format('D MMMM YYYY'),
-      address1: "Block 35, Lot 20, Talon Bente, Las Pinas",
-      address2: 'Talon Bente, Las Pinas',
-      mobile: '09194765353',
-      age: 27,
-      gender: 'male',
-      imgUrl: maleIcon
-    },
-    {
-      id: 2,
-      name: 'Bry Pogi',
-      email: 'Bry@bryan.com',
-      dob: Moment("1960/08/22").format('D MMMM YYYY'),
-      address1: "Block 35, Lot 20, Talon Bente, Las Pinas",
-      address2: 'Talon Bente, Las Pinas',
-      mobile: '09194765353',
-      age: 27,
-      gender: 'male',
-      imgUrl: maleIcon
-    },
-    {
-      id: 3,
-      name: 'Edward Pogi',
-      email: 'Edward@edward.com',
-      dob: Moment("1960/08/22").format('D MMMM YYYY'),
-      address1: "Block 35, Lot 20, Talon Bente, Las Pinas",
-      address2: 'Talon Bente, Las Pinas',
-      mobile: '09194765353',
-      age: 27,
-      gender: 'male',
-      imgUrl: maleIcon
-    },
-    {
-      id: 4,
-      name: 'Traxex Pogi',
-      email: 'Traxex@traxex.com',
-      dob: Moment("1960/08/22").format('D MMMM YYYY'),
-      address1: "Block 35, Lot 20, Talon Bente, Las Pinas",
-      address2: 'Talon Bente, Las Pinas',
-      mobile: '09194765353',
-      age: 27,
-      gender: 'male',
-      imgUrl: maleIcon
-    },
-    {
-      id: 5,
-      name: 'Anna Ganda',
-      email: 'Anna@anna.com',
-      dob: Moment("1960/08/22").format('D MMMM YYYY'),
-      address1: "Block 35, Lot 20, Talon Bente, Las Pinas",
-      address2: 'Talon Bente, Las Pinas',
-      mobile: '09194765353',
-      age: 27,
-      gender: 'female',
-      imgUrl: femaleICon
-    },
-    {
-      id: 6,
-      name: 'Nene Ganda',
-      email: 'Nene@nene.com',
-      dob: Moment("1960/08/22").format('D MMMM YYYY'),
-      address1: "Block 35, Lot 20, Talon Bente, Las Pinas",
-      address2: 'Talon Bente, Las Pinas',
-      mobile: '09194765353',
-      age: 27,
-      gender: 'female',
-      imgUrl: femaleICon
-    },
-  ]
+  const data = []
   return [...data, ...data, ...data]
 }
 
 function PatientList() {
+  const [patients, setPatients] = useState([])
 
-  const columns = React.useMemo(() => [
+  const fetchPatients = async () => {
+    const response = await axios
+      .get("http://127.0.0.1:3001/patient_records")
+      .catch((err) => console.log(err));
+
+      if (response) {
+        const patients = response.data;
+  
+        console.log("Patients: ", patients);
+        setPatients(patients);
+        
+      }
+    };
+
+  const columns = React.useMemo(() => [ 
     {
       Header: "ID",
       accessor: 'id'
@@ -127,6 +71,10 @@ function PatientList() {
   ], [])
 
   const data = React.useMemo(() => getData(), [])
+
+  useEffect(() => {
+    fetchPatients()
+  }, [])
 
   return (
     <div className="min-h-full w-[109em] bg-gray-100 text-gray-900">
