@@ -16,8 +16,10 @@
     "moment": "^2.29.3",
     "react": "^18.0.0",
     "react-big-calendar": "^0.40.2",
+    "react-calendar": "^3.7.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.0.0",
+    "react-modern-calendar-datepicker": "^3.1.6",
     "react-table": "^7.8.0",
     "regenerator-runtime": "^0.13.9"
   },
