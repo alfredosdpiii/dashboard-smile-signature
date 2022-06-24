@@ -18,11 +18,11 @@ function GlobalFilter({
   }, 200)
 
   return (
-    <label className="flex gap-x-2 items-baseline">
+    <label className="flex gap-x-3 items-baseline">
       <span className="text-gray-700">Search: </span>
       <input
         type="text"
-        className="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        className="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 py-1 px-1"
         value={value || ""}
         onChange={e => {
           setValue(e.target.value);
