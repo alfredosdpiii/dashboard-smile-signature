@@ -43,11 +43,11 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                     </option>
                   </select>
                 </div>
-                <div className='flex flex-col text-black py-2'>
+                <div className='flex flex-col text-black py-2' onClick={()=> setShowCalendar(!showCalendar)}>
                   <label className='black'>Date of Birth</label>
-                  <input type={'text'} onChange={setSelectedDay} value={selectedDay} onClick={()=> setShowCalendar(true)} />
+                  <input className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none' type={'text'} onChange={setSelectedDay} value={selectedDay}/>
                   {showCalendar && (
-                  <Calendar onChange={setSelectedDay} value={selectedDay} />
+                  <Calendar onChange={setSelectedDay} value={selectedDay} className='w-[27.3em] rounded-lg absolute bottom-[118px]'/>
                   )}
                 </div>
                 <div className='flex flex-col text-black py-2'>
