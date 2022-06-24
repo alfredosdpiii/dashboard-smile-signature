@@ -1,9 +1,10 @@
-import React from 'react'
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useSortBy, usePagination } from 'react-table'
 import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDoubleRightIcon } from '@heroicons/react/solid'
 import { Button, PageButton } from '../utils/Button'
 import { classNames } from '../utils/Utils'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../utils/Icons'
+import PatientRegister from './PatientRegister';
+import React, { useState } from 'react';
 
 // Define a default UI for filtering
 function GlobalFilter({
@@ -96,6 +97,12 @@ export function AvatarCell({ value, column, row }) {
 }
 
 function Table({ columns, data }) {
+
+  const [isAddingPatient, setIsAddingPatient] = useState(false)
+
+  const handleAddPatient = () => {
+    setIsAddingPatient(!isAddingPatient)
+  }
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -139,7 +146,9 @@ function Table({ columns, data }) {
           setGlobalFilter={setGlobalFilter}
         />
         <button 
-        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>
+        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
+        onClick={handleAddPatient}
+        >
           Register Patient
         </button>
         {headerGroups.map((headerGroup) =>
@@ -282,6 +291,9 @@ function Table({ columns, data }) {
           </div>
         </div>
       </div>
+      {isAddingPatient && (
+        <PatientRegister setIsAddingPatient={setIsAddingPatient} />
+      )}
     </>
   )
 }

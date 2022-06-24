@@ -5,7 +5,7 @@ import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from 'react-modern-calendar-datepicker';
 
 
-const PatientRegister = () => {
+const PatientRegister = ({ setIsAddingPatient }) => {
   const[selectedDay, setSelectedDay] = useState(null);
 
   const renderCustomInput = ({ ref }) => (
@@ -91,7 +91,7 @@ const PatientRegister = () => {
                 <button
                   className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
-                  onClick={() => setIsScheduling(false)}
+                  onClick={() => setIsAddingPatient(false)}
                 >
                   Close
                 </button>
