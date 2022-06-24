@@ -8,10 +8,6 @@ import DatePicker from 'react-modern-calendar-datepicker';
 const PatientRegister = () => {
   const[selectedDay, setSelectedDay] = useState(null);
 
-  const onDateChange = (birthday) => {
-    setBirthday(birthday)
-  }
-
   const renderCustomInput = ({ ref }) => (
     <input
       readOnly
