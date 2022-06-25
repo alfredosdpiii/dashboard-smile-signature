@@ -1,7 +1,48 @@
 import React from 'react'
 import toothChart4 from '../assets/images/tooth-chart-4.jpg'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const DentalRecord = () => {
+  const [patients, setPatients] = useState([])
+  const [suggestions, setSuggestions] = useState([])
+  const [text, setText] = useState('')
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/patient_records'
+    }).then((res) => {
+      const patients = res.data;
+      // const patient_names = []
+      // patients.map((patient) => {
+      //   let name = patient.full_name
+      //   patient_names.push(name)
+      // })
+      // console.log(patient_names)
+      // setPatients(patient_names)
+      setPatients(patients)
+    })
+  }, [])
+
+  const onSuggestHandler = (text) => {
+    setText(text)
+    setSuggestions([])
+  }
+
+  const onChangeHandler = (text) => {
+    let matches = []
+    if (text.length > 0) {
+      matches = patients.filter(patient => {
+        const regex = new RegExp(`${text}`,"gi");
+        return patient.full_name.match(regex)
+      })
+    }
+    console.log(matches)
+    setSuggestions(matches)
+    setText(text)
+  }
+
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none">
@@ -22,9 +63,23 @@ const DentalRecord = () => {
                     <div className='flex flex-col text-black py-5'>
                       <label className='black text-lg'>Patient</label>
                       <input 
-                        className='rounded-lg bg-zinc-200 mt-2 p-2 focus:border-blue-100 focus:bg-gray-400 focus:outline-none focus:text-white' 
-                        type="text" 
+                        className='rounded-sm bg-zinc-200 mt-2 p-2 focus:border-blue-100 focus:bg-gray-400 focus:outline-none focus:text-white' 
+                        type="text"
+                        onChange={e => onChangeHandler(e.target.value)} 
+                        value={text} 
+                        onBlur={() => {
+                          setTimeout(() => {
+                            setSuggestions([])
+                          }, 200)
+                        }}
                     />
+                    {suggestions && suggestions.map((suggestion, i) => 
+                      <div key={i} 
+                      className='w-full bg-zinc-100 cursor-pointer border-b border-r border-l border-zinc-400 hover:bg-zinc-500 hover:text-white' 
+                      onClick={() => onSuggestHandler(suggestion.full_name)}>
+                        {suggestion.full_name}
+                      </div>
+                    )}
                     </div>
                     <div className='flex flex-col text-black py-5'>
                       <label className='black text-lg'>Branch</label>
