@@ -76,7 +76,7 @@ const DentalRecord = () => {
                     {suggestions && suggestions.map((suggestion, i) => 
                       <div key={i} 
                       className='w-full bg-zinc-100 cursor-pointer border-b border-r border-l border-zinc-400 hover:bg-zinc-500 hover:text-white' 
-                      onClick={() => onSuggestHandler(suggestion)}>
+                      onClick={() => onSuggestHandler(suggestion.full_name)}>
                         {suggestion.full_name}
                       </div>
                     )}
