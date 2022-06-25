@@ -1,5 +1,4 @@
 import React from 'react'
-import toothChart from '../assets/images/tooth-chart.png'
 import toothChart3 from '../assets/images/tooth-chart-3.webp'
 
 const DentalRecord = () => {
