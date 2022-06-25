@@ -4,6 +4,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import Sidebar from './utils/Sidebar'
 import Login from './components/Login';
 import PatientList from './components/PatientList'
+import DentalHistory from './components/DentalHistory';
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
         <Sidebar />
         <main role="main" className="w-screen pt-1 px-2">
           {/* <Scheduler /> */}
-          <PatientList />
+          {/* <PatientList /> */}
+          <DentalHistory />
         </main>
       </div>
   )
