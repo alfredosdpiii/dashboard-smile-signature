@@ -5,6 +5,7 @@ import Sidebar from './utils/Sidebar'
 import Login from './components/Login';
 import PatientList from './components/PatientList'
 import DentalHistory from './components/DentalHistory';
+import DentalRecord from './components/DentalRecord';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
         <main role="main" className="w-screen pt-1 px-2">
           {/* <Scheduler /> */}
           {/* <PatientList /> */}
-          <DentalHistory />
+          <DentalRecord />
         </main>
       </div>
   )
