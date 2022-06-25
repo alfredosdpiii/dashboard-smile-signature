@@ -32,7 +32,7 @@ const PatientRegister = ({ setIsAddingPatient }) => {
         .post('http://127.0.0.1:3001/patient_records/create', {
           full_name: values.fullName,
           gender: values.gender,
-          date_of_birth: dayjs(values.dateInput).format('DD/MM/YY'),
+          date_of_birth: dayjs(values.dateInput).format('DD/MM/YYYY'),
           email: values.email,
           mobile: values.mobile,
           address: values.address
@@ -53,7 +53,7 @@ const PatientRegister = ({ setIsAddingPatient }) => {
     console.log(data)
   }
 
-  console.log(dayjs(watch("dateInput")).format('DD/MM/YY'))
+  console.log(dayjs(watch("dateInput")).format('DD/MM/YYYY'))
 
 
   return (
