@@ -3,8 +3,6 @@ import 'regenerator-runtime/runtime';
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from './Table'
 import maleIcon from '../assets/icons/male-avatar.jpg'
 import femaleICon from '../assets/icons/female-avatar.webp'
-import Moment from 'moment';
-import { Button } from '../utils/Button'
 import { useState } from 'react';
 import axios from 'axios';
 import PatientRegister from './PatientRegister';
@@ -13,6 +11,11 @@ import PatientRegister from './PatientRegister';
 
 function PatientList() {
   const [patients, setPatients] = useState([])
+  const [isAddingPatient, setIsAddingPatient] = useState(false)
+
+  const handleAddPatient = () => {
+    setIsAddingPatient(!isAddingPatient)
+  }
 
   const columns = React.useMemo(() => [ 
     {
@@ -75,16 +78,25 @@ function PatientList() {
 
   return (
     <>
-      <div className="min-h-full w-[109em] bg-gray-100 text-gray-900">
+      <div className="min-h-full w-[109.5em] bg-gray-100 text-gray-900">
         <main className="w-full h-[60.5em] mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="">
-            <h1 className="text-xl font-semibold">🦷 PATIENT LIST 🦷</h1>
+          <div className="w-full flex flex-row justify-between">
+            <h1 className="text-xl font-semibold"> PATIENT LIST 📃</h1>
+            <button 
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
+              onClick={handleAddPatient}
+            >
+          Register Patient
+        </button>
           </div>
           <div className="mt-6">
             <Table columns={columns} data={data} />
           </div>
         </main>
       </div>
+      {isAddingPatient && (
+        <PatientRegister setIsAddingPatient={setIsAddingPatient} />
+      )}
     </>
     
   );

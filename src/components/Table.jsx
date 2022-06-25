@@ -1,10 +1,8 @@
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useSortBy, usePagination } from 'react-table'
 import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDoubleRightIcon } from '@heroicons/react/solid'
 import { Button, PageButton } from '../utils/Button'
-import { classNames } from '../utils/Utils'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../utils/Icons'
-import PatientRegister from './PatientRegister';
-import React, { useState } from 'react';
+import React from 'react';
 
 // Define a default UI for filtering
 function GlobalFilter({
@@ -35,13 +33,10 @@ function GlobalFilter({
   )
 }
 
-// This is a custom filter UI for selecting
-// a unique option from a list
 export function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id, render },
 }) {
-  // Calculate the options for filtering
-  // using the preFilteredRows
+
   const options = React.useMemo(() => {
     const options = new Set()
     preFilteredRows.forEach(row => {
@@ -50,7 +45,7 @@ export function SelectColumnFilter({
     return [...options.values()]
   }, [id, preFilteredRows])
 
-  // Render a multi-select box
+
   return (
     <label className="flex gap-x-2 items-baseline">
       <span className="text-gray-700">{render("Header")}: </span>
@@ -98,22 +93,13 @@ export function AvatarCell({ value, column, row }) {
 
 function Table({ columns, data }) {
 
-  const [isAddingPatient, setIsAddingPatient] = useState(false)
-
-  const handleAddPatient = () => {
-    setIsAddingPatient(!isAddingPatient)
-  }
-  // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
 
-    page, // Instead of using 'rows', we'll use page,
-    // which has only the rows for the active page
-
-    // The rest of these things are super handy, too ;)
+    page,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -130,13 +116,12 @@ function Table({ columns, data }) {
     columns,
     data,
   },
-    useFilters, // useFilters!
+    useFilters,
     useGlobalFilter,
     useSortBy,
-    usePagination,  // new
+    usePagination,
   )
 
-  // Render the UI for your table
   return (
     <>
       <div className="sm:flex sm:gap-x-2 flex justify-between">
@@ -145,12 +130,6 @@ function Table({ columns, data }) {
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
-        <button 
-        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
-        onClick={handleAddPatient}
-        >
-          Register Patient
-        </button>
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (
@@ -161,7 +140,7 @@ function Table({ columns, data }) {
           )
         )}
       </div>
-      {/* table */}
+
       <div className="mt-4 flex flex-col">
         <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -171,8 +150,6 @@ function Table({ columns, data }) {
                   {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map(column => (
-                        // Add the sorting props to control sorting. For this example
-                        // we can add them into the header props
                         <th
                           scope="col"
                           className="group px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -180,7 +157,6 @@ function Table({ columns, data }) {
                         >
                           <div className="flex items-center justify-between">
                             {column.render('Header')}
-                            {/* Add a sort direction indicator */}
                             <span>
                               {column.isSorted
                                 ? column.isSortedDesc
@@ -200,7 +176,7 @@ function Table({ columns, data }) {
                   {...getTableBodyProps()}
                   className="bg-white divide-y divide-gray-200"
                 >
-                  {page.map((row, i) => {  // new
+                  {page.map((row, i) => {
                     prepareRow(row)
                     return (
                       <tr {...row.getRowProps()}>
@@ -227,7 +203,6 @@ function Table({ columns, data }) {
           </div>
         </div>
       </div>
-      {/* Pagination */}
       <div className="py-3 flex items-center justify-between">
         <div className="flex-1 flex justify-between sm:hidden">
           <Button onClick={() => previousPage()} disabled={!canPreviousPage}>Previous</Button>
@@ -291,9 +266,6 @@ function Table({ columns, data }) {
           </div>
         </div>
       </div>
-      {isAddingPatient && (
-        <PatientRegister setIsAddingPatient={setIsAddingPatient} />
-      )}
     </>
   )
 }
