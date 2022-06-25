@@ -78,8 +78,8 @@ function PatientList() {
 
   return (
     <>
-      <div className="min-h-full w-[109.5em] bg-gray-100 text-gray-900">
-        <main className="w-full h-[60.5em] mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <div className="min-h-full w-full bg-gray-100 text-gray-900">
+        <main className="w-full h-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="w-full flex flex-row justify-between">
             <h1 className="text-xl font-semibold"> PATIENT LIST 📃</h1>
             <button 

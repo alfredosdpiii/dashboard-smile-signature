@@ -10,7 +10,7 @@ function App() {
   return (
       <div className="flex flex-row h-screen w-screen">
         <Sidebar />
-        <main role="main" className="w-screen sm:w-2/3 md:w-3/4 pt-1 px-2">
+        <main role="main" className="w-screen pt-1 px-2">
           {/* <Scheduler /> */}
           <PatientList />
         </main>
