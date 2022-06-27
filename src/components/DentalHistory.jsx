@@ -103,14 +103,9 @@ const DentalHistory = () => {
         <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="flex flex-row justify-between p-2 mb-10">
               <h1 className="text-2xl font-semibold">DENTAL HISTORY 🦷</h1>
-              <button 
-                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
-                >
-                Create Record
-              </button>
             </div>
             <div className="mt-6">
-              <Table columns={columns} data={data} />
+              <Table columns={columns} data={data} label="Create Record"/>
             </div>
           </main>
       </div>

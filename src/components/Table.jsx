@@ -1,6 +1,6 @@
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useSortBy, useRowSelect, usePagination,  } from 'react-table'
 import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDoubleRightIcon } from '@heroicons/react/solid'
-import { Button, PageButton } from '../utils/Button'
+import { Button, PageButton, TableButton } from '../utils/Button'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../utils/Icons'
 import React from 'react';
 
@@ -91,7 +91,7 @@ export function AvatarCell({ value, column, row }) {
   )
 }
 
-function Table({ onSelectedRows, columns, data }) {
+function Table({ onSelectedRows, columns, data, label, handleClick }) {
 
   const {
     getTableProps,
@@ -126,18 +126,19 @@ function Table({ onSelectedRows, columns, data }) {
     useRowSelect,
   )
 
-  React.useEffect(()=>{
-    onSelectedRows(selectedFlatRows);
-  },[selectedFlatRows])
+  // React.useEffect(()=>{
+  //   onSelectedRows(selectedFlatRows);
+  // },[selectedFlatRows])
 
   return (
     <>
-      <div className="sm:flex sm:gap-x-2 flex justify-between">
+      <div className="sm:flex sm:gap-x-2 flex justify-between items-center">
         <GlobalFilter
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
+        <TableButton label= {label} handleClick= {handleClick}/>
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (

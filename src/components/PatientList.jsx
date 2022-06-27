@@ -114,15 +114,15 @@ function PatientList() {
         <main className="w-full h-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <div className="w-full flex flex-row justify-between">
             <h1 className="text-xl font-semibold"> PATIENT LIST 📃</h1>
-            <button 
+            {/* <button 
               className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
               onClick={handleAddPatient}
             >
           Register Patient
-        </button>
+        </button> */}
           </div>
           <div className="mt-6">
-            <Table onSelectedRows={onSelectedRows} columns={columns} data={data} />
+            <Table onSelectedRows={onSelectedRows} columns={columns} data={data} label="Register Patient" handleClick={handleAddPatient}/>
           </div>
         </main>
       </div>
