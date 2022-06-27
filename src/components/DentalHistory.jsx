@@ -7,9 +7,6 @@ import dayjs from 'dayjs'
 const DentalHistory = () => {
   const [dentalRecords, setDentalRecords] = useState([])
 
-  const services = []
-
-
   const columns = React.useMemo(() => [ 
     {
       Header: "ID",
