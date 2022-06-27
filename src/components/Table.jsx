@@ -274,21 +274,6 @@ function Table({ onSelectedRows, columns, data }) {
           </div>
         </div>
       </div>
-     <p>Selected Rows: {selectedRowPaths}</p>
-      <pre>
-        <code>
-          {JSON.stringify(
-            {
-              selectedRowPaths,
-              "selectedFlatRows[].original": selectedFlatRows.map(
-                d => d.original
-              )
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
     </>
   )
 }
