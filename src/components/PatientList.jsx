@@ -13,6 +13,7 @@ function PatientList() {
   const [patients, setPatients] = useState([])
   const [isAddingPatient, setIsAddingPatient] = useState(false)
   const [selectedRows, setSelectedData] = useState([])
+  const [selectedPatient, setSelectedPatient] = useState('')
 
   const onSelectedRows = rows => {
     const mappedRows = rows.map(r => r.original);
@@ -26,6 +27,16 @@ function PatientList() {
   const handlePassData = (id) => {
     console.log(id)
 
+  }
+
+  const handleRecordClick = (row) => {
+    console.log(row.original)
+    setSelectedPatient(row.original)
+  }
+
+  const handleTransactionClick = (row) => {
+    console.log(row.original)
+    setSelectedPatient(row.original)
   }
 
   const data = patients
@@ -80,25 +91,20 @@ function PatientList() {
     {
       id:"selection",
       Header: ({getToggleAllRowsSelectedProps }) =>(
-        <>
-      {/* <button className ='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg' onClick={...getToggleAllRowsSelectedProps()}>Record</button> */}
-        <div>
-            <input type="checkbox" {...getToggleAllRowsSelectedProps()} />
-          </div>
-        </>
+        <div>Dental History</div>
       ),
       Cell: ({row})=>(
-        <>
-         <div>
-            <input type="checkbox" {...row.getToggleRowSelectedProps()} />
-          </div>
-        {/* <button className ='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg' onClick={...row.getToggleRowSelectedProps()}>Record</button> */}
-        </>
+        <button className ='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg' onClick={() => handleRecordClick(row)}>Records</button>
       ),
     },
     {
-      Header: "Transactions",
-      Cell: <button className ='bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded-lg'>Transactions</button>
+      id:"selection2",
+      Header: ({getToggleAllRowsSelectedProps }) =>(
+        <div>Sales History</div>
+      ),
+      Cell: ({row})=>(
+        <button className ='bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded-lg' onClick={() => handleTransactionClick(row)}>Transactions</button>
+      ),
     }
   ], [])
 
