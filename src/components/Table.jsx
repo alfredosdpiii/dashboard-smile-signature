@@ -1,4 +1,4 @@
-import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useSortBy, usePagination } from 'react-table'
+import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useSortBy, useRowSelect, usePagination,  } from 'react-table'
 import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDoubleRightIcon } from '@heroicons/react/solid'
 import { Button, PageButton } from '../utils/Button'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../utils/Icons'
@@ -91,12 +91,13 @@ export function AvatarCell({ value, column, row }) {
   )
 }
 
-function Table({ columns, data }) {
+function Table({ onSelectedRows, columns, data }) {
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
+    rows,
     prepareRow,
 
     page,
@@ -109,9 +110,11 @@ function Table({ columns, data }) {
     previousPage,
     setPageSize,
 
-    state,
     preGlobalFilteredRows,
     setGlobalFilter,
+    selectedFlatRows,
+    state,
+    state: { selectedRowPaths }
   } = useTable({
     columns,
     data,
@@ -120,7 +123,12 @@ function Table({ columns, data }) {
     useGlobalFilter,
     useSortBy,
     usePagination,
+    useRowSelect,
   )
+
+  React.useEffect(()=>{
+    onSelectedRows(selectedFlatRows);
+  },[selectedFlatRows])
 
   return (
     <>
@@ -266,6 +274,21 @@ function Table({ columns, data }) {
           </div>
         </div>
       </div>
+     <p>Selected Rows: {selectedRowPaths}</p>
+      <pre>
+        <code>
+          {JSON.stringify(
+            {
+              selectedRowPaths,
+              "selectedFlatRows[].original": selectedFlatRows.map(
+                d => d.original
+              )
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
     </>
   )
 }
