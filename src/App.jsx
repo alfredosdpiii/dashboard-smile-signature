@@ -15,9 +15,9 @@ function App() {
         <Sidebar />
         <main role="main" className="w-screen pt-1 px-2">
           {/* <Scheduler /> */}
-          {/* <PatientList /> */}
+          <PatientList />
           {/* <DentalHistory /> */}
-          <DentalRecord />
+          {/* <DentalRecord /> */}
           {/* <PatientRegister /> */}
         </main>
       </div>
