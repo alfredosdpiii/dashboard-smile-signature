@@ -2,6 +2,7 @@ import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useSortBy, use
 import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDoubleRightIcon } from '@heroicons/react/solid'
 import { Button, PageButton, TableButton } from '../utils/Button'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../utils/Icons'
+import { classNames } from '../utils/Utils'
 import React from 'react';
 
 // Define a default UI for filtering
@@ -69,13 +70,22 @@ export function SelectColumnFilter({
   )
 }
 
-export function StatusPill() {
+export function StatusPill({ value }) {
+  const status = value ? value.toLowerCase() : "unknown";
+
   return (
-    <button>
-      BUTTON
-    </button>
+    <span
+      className={classNames(
+        "px-3 py-1 uppercase leading-wide font-bold text-sm rounded-full shadow-sm",
+        status.startsWith("full") ? "bg-green-100 text-green-700" : null,
+        status.startsWith("follow-up") ? "bg-yellow-100 text-yellow-700" : null,
+        status.startsWith("partial") ? "bg-red-100 text-red-700" : null
+      )}
+    >
+      {status}
+    </span>
   );
-};
+}
 
 export function AvatarCell({ value, column, row }) {
   return (

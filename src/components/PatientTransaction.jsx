@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Table, { AvatarCell } from './Table'
-import recordIcon from '../assets/icons/dental-record-icon.jpg'
+import Table, { AvatarCell, StatusPill } from './Table'
+import transactionIcon from '../assets/icons/transaction-icon-2.webp'
 import axios from 'axios'
 import dayjs from 'dayjs'
 
-const DentalHistory = () => {
-  const [dentalRecords, setDentalRecords] = useState([])
+const PatientTransaction = () => {
+  const [transactions, setTransactions] = useState([])
 
   const columns = React.useMemo(() => [ 
     {
@@ -42,67 +42,71 @@ const DentalHistory = () => {
        }
     },
     {
-      Header: "Tooth",
-      accessor: 'tooth',
+      Header: "Amount",
+      accessor: 'amount',
+    },
+    {
+      Header: "Type",
+      accessor: 'payment_type',
+    },
+    {
+      Header: "Status",
+      accessor: 'status',
+      Cell: StatusPill
+    },
+    {
+      Header: "Remaining",
+      accessor: 'remaining',
       Cell: ({ row }) => {
-        return (
-             row.original.tooth
-                .map((t) => (
-                    <div key={t}>
-                        <h4>{t}</h4>
-                    </div>
-                ))
-              );
+        if (parseInt(row.original.remaining) > 0) {
+          return (
+            <h4 className='text-base text-red-700'>{row.original.remaining}</h4>
+          )
+        } else {
+          return (
+            <h4>----</h4>
+          )
+        }
        }
+        
     },
     {
       Header: "Branch",
       accessor: 'branch',
-    },
-    {
-      Header: "Remarks",
-      accessor: 'remarks',
-      Cell: ({ row }) => {
-        return (
-          <div>
-            {row.original.remarks}
-          </div>
-              );
-       }
     }
   ], [])
 
-  const data = dentalRecords
+  const data = transactions
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/dental_records'
+      url: 'http://127.0.0.1:3001/patient_record/19/transactions'
     }).then((res) => {
-      const dental_records = res.data;
-      const new_dental_records = []
-      dental_records.map((record) => {
+      const transactions = res.data;
+      const new_transactions = []
+      transactions.map((transaction) => {
         const new_object = {
-          ...record,
-          icon: recordIcon,
-          // record.created_at = dayjs(record.created_at).format('DD/MM/YYY')
+          ...transaction,
+          icon: transactionIcon,
         }
-        new_dental_records.push(new_object)
+        new_transactions.push(new_object)
       })
       
-      setDentalRecords(new_dental_records);
+      setTransactions(new_transactions);
     })
   }, [])
-  
+
+
   return (
     <>
       <div className='h-[60.5em] w-[109.3em] bg-gray-100'>
         <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="flex flex-row justify-between p-2 mb-10">
-              <h1 className="text-2xl font-semibold">DENTAL HISTORY 🦷</h1>
+              <h1 className="text-2xl font-semibold">TRANSACTIONS</h1>
             </div>
             <div className="mt-6">
-              <Table columns={columns} data={data} label="Create Record"/>
+              <Table columns={columns} data={data} label="Generate Transaction"/>
             </div>
           </main>
       </div>
@@ -110,4 +114,4 @@ const DentalHistory = () => {
   )
 }
 
-export default DentalHistory
+export default PatientTransaction

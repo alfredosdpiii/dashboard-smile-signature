@@ -7,6 +7,7 @@ import PatientList from './components/PatientList'
 import DentalHistory from './components/DentalHistory';
 import DentalRecord from './components/DentalRecord';
 import PatientRegister from './components/PatientRegister';
+import PatientTransaction from './components/PatientTransaction';
 
 function App() {
 
@@ -15,10 +16,11 @@ function App() {
         <Sidebar />
         <main role="main" className="w-screen pt-1 px-2">
           {/* <Scheduler /> */}
-          <PatientList />
+          {/* <PatientList /> */}
           {/* <DentalHistory /> */}
           {/* <DentalRecord /> */}
           {/* <PatientRegister /> */}
+          <PatientTransaction />
         </main>
       </div>
   )
