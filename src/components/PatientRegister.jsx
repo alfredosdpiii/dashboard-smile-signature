@@ -53,8 +53,6 @@ const PatientRegister = ({ setIsAddingPatient }) => {
     console.log(data)
   }
 
-  console.log(dayjs(watch("dateInput")).format('DD/MM/YYYY'))
-
 
   return (
     <>
