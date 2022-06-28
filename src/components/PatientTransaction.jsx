@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Table, { AvatarCell, StatusPill } from './Table'
-import transactionIcon from '../assets/icons/transaction-icon-2.webp'
+import transactionIcon from '../assets/icons/transaction-icon-3.png'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import TransactionModal from './TransactionModal'
