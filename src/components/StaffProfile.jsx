@@ -1,7 +1,5 @@
 import React from 'react'
 import person from '../assets/icons/person-icon.png'
-import profileMale from '../assets/icons/profile-male.png'
-import profilefemale from '../assets/icons/profile-female.png'
 import { useState, useEffect} from 'react';
 import axios from 'axios'
 import dayjs from 'dayjs';
