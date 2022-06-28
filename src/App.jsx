@@ -9,6 +9,7 @@ import DentalRecord from './components/DentalRecord';
 import PatientRegister from './components/PatientRegister';
 import PatientTransaction from './components/PatientTransaction';
 import TransactionModal from './components/TransactionModal';
+import StaffList from './components/StaffList';
 
 function App() {
 
@@ -21,8 +22,9 @@ function App() {
           {/* <DentalHistory /> */}
           {/* <DentalRecord /> */}
           {/* <PatientRegister /> */}
-          <PatientTransaction />
+          {/* <PatientTransaction /> */}
           {/* <TransactionModal /> */}
+          <StaffList />
         </main>
       </div>
   )
