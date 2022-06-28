@@ -6,11 +6,13 @@ import femaleIcon from '../assets/icons/female-dentist.png'
 import staffIcon from '../assets/icons/staff-icon.png'
 import { useState } from 'react';
 import axios from 'axios';
+import StaffProfile from './StaffProfile';
 
 const StaffList = () => {
   const [staff, setStaff] = useState([])
   const [selectedRows, setSelectedData] = useState([])
   const [selectedStaff, setSelectedStaff] = useState('')
+  const [isSelectingStaff, setIsSelectingStaff] = useState(false)
   const data = staff
 
   const onSelectedRows = rows => {
@@ -21,6 +23,8 @@ const StaffList = () => {
   const handleProfileClick = (row) => {
     console.log(row.original)
     setSelectedStaff(row.original)
+
+    setIsSelectingStaff(!isSelectingStaff)
   }
 
   useEffect(() => {
@@ -95,6 +99,9 @@ const StaffList = () => {
           </div>
         </main>
       </div>
+      {isSelectingStaff && (
+        <StaffProfile setIsSelectingStaff={setIsSelectingStaff} staff={selectedStaff}/>
+      )}
     </>
   )
 }
