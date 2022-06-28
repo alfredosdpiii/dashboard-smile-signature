@@ -8,6 +8,7 @@ import DentalHistory from './components/DentalHistory';
 import DentalRecord from './components/DentalRecord';
 import PatientRegister from './components/PatientRegister';
 import PatientTransaction from './components/PatientTransaction';
+import TransactionModal from './components/TransactionModal';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           {/* <DentalRecord /> */}
           {/* <PatientRegister /> */}
           <PatientTransaction />
+          {/* <TransactionModal /> */}
         </main>
       </div>
   )
