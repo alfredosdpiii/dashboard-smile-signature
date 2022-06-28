@@ -3,10 +3,11 @@ import Table, { AvatarCell, StatusPill } from './Table'
 import transactionIcon from '../assets/icons/transaction-icon-2.webp'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import TransactionModal from './TransactionModal'
 
 const PatientTransaction = () => {
   const [transactions, setTransactions] = useState([])
-
+  const [isCreatingTransaction, setIsCreatingTransaction] = useState(false)
   const columns = React.useMemo(() => [ 
     {
       Header: "ID",
@@ -97,6 +98,10 @@ const PatientTransaction = () => {
     })
   }, [])
 
+  const handleCreateTransaction = () => {
+    setIsCreatingTransaction(!isCreatingTransaction)
+  }
+
 
   return (
     <>
@@ -106,10 +111,13 @@ const PatientTransaction = () => {
               <h1 className="text-2xl font-semibold">TRANSACTIONS</h1>
             </div>
             <div className="mt-6">
-              <Table columns={columns} data={data} label="Generate Transaction"/>
+              <Table columns={columns} data={data} label="Generate Transaction" handleClick={handleCreateTransaction} />
             </div>
           </main>
       </div>
+      {isCreatingTransaction && (
+        <TransactionModal setIsCreatingTransaction={setIsCreatingTransaction} />
+      )}
     </>
   )
 }
