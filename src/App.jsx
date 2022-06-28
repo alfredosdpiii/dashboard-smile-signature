@@ -11,6 +11,7 @@ import PatientTransaction from './components/PatientTransaction';
 import TransactionModal from './components/TransactionModal';
 import StaffList from './components/StaffList';
 import StaffProfile from './components/StaffProfile';
+import ProfileSetup from './components/ProfileSetup';
 
 function App() {
 
@@ -25,8 +26,8 @@ function App() {
           {/* <PatientRegister /> */}
           {/* <PatientTransaction /> */}
           {/* <TransactionModal /> */}
-          <StaffList />
-          {/* <StaffProfile /> */}
+          {/* <StaffList /> */}
+          <ProfileSetup />
         </main>
       </div>
   )
