@@ -5,7 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import axios from "axios";
 import dayjs from 'dayjs'
 
-const PatientRegister = ({ setIsAddingPatient }) => {
+const ProfileSetup = () => {
   const [selectedDay, setSelectedDay] = useState("");
   const [showCalendar, setShowCalendar] = useState(false)
 
@@ -24,25 +24,29 @@ const PatientRegister = ({ setIsAddingPatient }) => {
     }
   });
 
+
   useEffect(() => {
     if(isSubmitSuccessful) {
       const values = getValues();
 
       axios
-        .post('http://127.0.0.1:3001/patient_records/create', {
-          full_name: values.fullName,
+        .post('http://127.0.0.1:3001/profile/create', {
+          first_name: values.firstName,
+          middle_name: values.middleName,
+          last_name: values.lastName,
           gender: values.gender,
           date_of_birth: dayjs(values.dateInput).format('DD/MM/YYYY'),
-          email: values.email,
           mobile: values.mobile,
-          address: values.address
+          address: values.address,
+          id: 10
         })
         .then((res) => {
+          console.log(values)
           console.log(res)
-          setIsAddingPatient(false)
         })
     }
   },[isSubmitSuccessful])
+
 
   const handleCalendarChange = (value) =>{
     setSelectedDay(value)
@@ -61,22 +65,40 @@ const PatientRegister = ({ setIsAddingPatient }) => {
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-[600px] bg-white outline-none focus:outline-none">
             <div className="flex items-start justify-center p-5 border-b border-solid border-slate-200 rounded-t">
               <h3 className="text-3xl font-semibold">
-                Let's add a Patient 📝
+                Let's set-up your profile 🎉
               </h3>
             </div>
             <div className="relative p-2 flex-auto">
               <form 
-                className='max-w-[500px] w-full mx-auto bg-white p-8 px-8 rounded-lg' 
+                className='max-w-[500px] w-full mx-auto bg-white p-4 px-8 rounded-lg' 
                 onSubmit={handleSubmit(onSubmit)}
                 >
                 <div className='flex flex-col text-black py-2'>
-                  <label className='black'>Full Name</label>
+                  <label className='black'>First Name</label>
                   <input 
                     className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
                     type="text" 
-                    {...register("fullName", {required: "This is required"})}
+                    {...register("firstName", {required: "This is required"})}
                   />
-                  <span className='text-red-600'>{errors.fullName?.message}</span>
+                  <span className='text-red-600'>{errors.firstName?.message}</span>
+                </div>
+                <div className='flex flex-col text-black py-2'>
+                  <label className='black'>Middle Name</label>
+                  <input 
+                    className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
+                    type="text" 
+                    {...register("middleName", {required: "This is required"})}
+                  />
+                  <span className='text-red-600'>{errors.middleName?.message}</span>
+                </div>
+                <div className='flex flex-col text-black py-2'>
+                  <label className='black'>Last Name</label>
+                  <input 
+                    className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
+                    type="text" 
+                    {...register("lastName", {required: "This is required"})}
+                  />
+                  <span className='text-red-600'>{errors.lastName?.message}</span>
                 </div>
                 <div className='flex flex-col text-black py-2'>
                   <label className='black'>Gender</label>
@@ -114,23 +136,15 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                       />
                     )}
                   />
+                  
                   <span className='text-red-600'>{errors.dateInput?.message}</span>
-                </div>
-                <div className='flex flex-col text-black py-2'>
-                  <label className='black'>Email</label>
-                  <input 
-                    className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
-                    type="text" 
-                    {...register("email", {required: "This is required."})}
-                  />
-                  <span className='text-red-600'>{errors.email?.message}</span>
                 </div>
                 <div className='flex flex-col text-black py-2'>
                   <label className='black'>Mobile</label>
                   <input 
                     className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
                     type="text" 
-                    {...register("mobile", {required: "This is required."})}  
+                    {...register("mobile", {required: "This is required"})}  
                   />
                   <span className='text-red-600'>{errors.mobile?.message}</span>
                 </div>
@@ -139,7 +153,7 @@ const PatientRegister = ({ setIsAddingPatient }) => {
                   <input 
                     className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
                     type="string" 
-                    {...register("address", {required: "This is required."})}  
+                    {...register("address", {required: "This is required"})}  
                   />
                   <span className='text-red-600'>{errors.address?.message}</span>
                 </div>
@@ -149,8 +163,7 @@ const PatientRegister = ({ setIsAddingPatient }) => {
             <div className="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
               <button
                 className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => setIsAddingPatient(false)}>
+                type="button">
                 Close
               </button>
             </div>
@@ -162,4 +175,4 @@ const PatientRegister = ({ setIsAddingPatient }) => {
   )
 }
 
-export default PatientRegister
+export default ProfileSetup

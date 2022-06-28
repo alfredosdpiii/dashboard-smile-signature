@@ -150,7 +150,6 @@ const TransactionModal = ({ setIsCreatingTransaction }) => {
                         yearDropdownItemNumber={300}
                         scrollableYearDropdown
                         className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:text-white focus:outline-none w-full'
-                        {...register("dateInput", {required: "Required field! ⚠"})}
                       />
                     )}
                   />
