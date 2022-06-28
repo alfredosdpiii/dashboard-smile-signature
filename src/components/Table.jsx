@@ -148,7 +148,7 @@ function Table({ onSelectedRows, columns, data, label, handleClick }) {
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
-        <TableButton label= {label} handleClick= {handleClick}/>
+        {label && (<TableButton label= {label} handleClick= {handleClick}/>)}
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (
