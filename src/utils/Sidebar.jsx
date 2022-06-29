@@ -1,5 +1,6 @@
 import React from 'react'
 import logo2 from '../assets/images/logo2.png'
+import { Link, Route } from 'wouter';
 
 const Sidebar = () => {
   return (
@@ -14,15 +15,21 @@ const Sidebar = () => {
             <li className="list-none py-8 px-5 border-y-2">
               Overview
             </li>
-            <li className="list-none py-8 px-5 border-b-2">
-              Calendar
-            </li>
-            <li className="list-none py-8 px-5 border-b-2">
-              Patient list
-            </li>
-            <li className="list-none py-8 px-5 border-b-2">
-              Staff list
-            </li>
+            <Link href='/schedule'>
+              <li className="list-none py-8 px-5 border-b-2">
+                Calendar
+              </li>
+            </Link>
+            <Link href='/patients'>
+              <li className="list-none py-8 px-5 border-b-2">
+                Patient list
+              </li>
+            </Link>
+            <Link href='/staff'>
+              <li className="list-none py-8 px-5 border-b-2">
+                Staff list
+              </li>
+            </Link>
             <li className="list-none py-8 px-5 border-b-2">
               Transactions
             </li>

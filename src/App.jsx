@@ -12,24 +12,36 @@ import TransactionModal from './components/TransactionModal';
 import StaffList from './components/StaffList';
 import StaffProfile from './components/StaffProfile';
 import ProfileSetup from './components/ProfileSetup';
+import { Link, Route } from 'wouter';
 
 function App() {
 
   return (
-      <div className="flex flex-row h-screen w-screen">
-        <Sidebar />
-        <main role="main" className="w-screen pt-1 px-2">
-          {/* <Scheduler /> */}
-          {/* <PatientList /> */}
-          {/* <DentalHistory /> */}
-          {/* <DentalRecord /> */}
-          {/* <PatientRegister /> */}
-          {/* <PatientTransaction /> */}
-          {/* <TransactionModal /> */}
-          {/* <StaffList /> */}
-          <ProfileSetup />
-        </main>
-      </div>
+    <div className="flex flex-row h-screen w-screen">
+      <Sidebar />
+      <main role="main" className="w-screen pt-1 px-2">
+        {/* <Scheduler /> */}
+        <Route path='/patients'
+          component={PatientList}
+        />
+        <Route path='/staff'
+          component={StaffList}
+        />
+        {/* <Route path='/login' */}
+        {/*   component={} */}
+        {/* /> */}
+        <Route path='/login'
+          component={Login}
+        />
+        {/* <DentalHistory /> */}
+        {/* <DentalRecord /> */}
+        {/* <PatientRegister /> */}
+        {/* <PatientTransaction /> */}
+        {/* <TransactionModal /> */}
+        {/* <StaffList /> */}
+        {/* <ProfileSetup /> */}
+      </main>
+    </div>
   )
 }
 
