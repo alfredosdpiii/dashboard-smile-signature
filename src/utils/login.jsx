@@ -48,7 +48,7 @@ export const login = async (values) => {
         gender: response.data.user.gender
       }
 
-      localStorage.setItem('user', JSON.stringify(userData))
+      localStorage.setItem('user', JSON.stringify(userData.token))
 
       return userData
     });
