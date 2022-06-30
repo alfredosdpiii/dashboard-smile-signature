@@ -13,33 +13,36 @@ import StaffList from './components/StaffList';
 import StaffProfile from './components/StaffProfile';
 import ProfileSetup from './components/ProfileSetup';
 import Scheduler from './components/Scheduler'
-import React, {useState, useMemo} from "react"
-import { GlobalProvider } from "./context/GlobalState";
+import React, { useState, useMemo } from "react"
+import { UserContext } from "./context/UserContext";
 
 
 function App() {
   const [user, setUser] = useState(null)
-  const value = useMemo(()=> ({user, setUser}), [user, setUser])
-  
+  const value = useMemo(() => ({ user, setUser }), [user, setUser])
+
 
   return (
-    <GlobalProvider value={value}>
-      <div className="flex flex-row h-screen w-screen">
-        <Sidebar />
-        <main role="main" className="w-screen pt-1 px-2">
+    <UserContext.Provider value={value}>
+      {user ?
+        <div className="flex flex-row h-screen w-screen">
+          <Sidebar />
+          <main role="main" className="w-screen pt-1 px-2">
+            {/* <Scheduler /> */}
+            {/* <PatientList /> */}
+            {/* <DentalHistory /> */}
+            {/* <DentalRecord /> */}
+            {/* <PatientRegister /> */}
+            {/* <PatientTransaction /> */}
+            {/* <TransactionModal /> */}
+            {/* <StaffList /> */}
+            {/* <ProfileSetup /> */}
+          </main>
+        </div>
+        :
         <Login />
-          <Scheduler />
-          {/* <PatientList /> */}
-          {/* <DentalHistory /> */}
-          {/* <DentalRecord /> */}
-          {/* <PatientRegister /> */}
-          {/* <PatientTransaction /> */}
-          {/* <TransactionModal /> */}
-          {/* <StaffList /> */}
-          {/* <ProfileSetup /> */}
-        </main>
-      </div>
-    </GlobalProvider>
+      }
+    </UserContext.Provider>
   )
 }
 

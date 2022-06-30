@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const login = async (values) => {
   //           axios({
   //           method: 'post',
@@ -32,11 +34,21 @@ export const login = async (values) => {
       }
     }
   };
-
-  axios(options)
+  const user = axios(options)
     .then(response => {
-      return JSON.stringify(response)
+      // console.log(response.headers)
+      // console.log(response.data.data)
+      // console.log(user)
+      // let stringy = JSON.stringify(user)
+      const userData = {
+        id: response.data.data.id,
+        email: response.data.data.email,
+        token: response.headers.authorization
+      }
+
+      return userData
     });
+  return user
 
 
 }

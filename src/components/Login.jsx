@@ -3,12 +3,11 @@ import logo1 from '../assets/images/logo1.png'
 import background from '../assets/images/background1.jpg'
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
-import { GlobalContext } from '../context/GlobalState'
+import { UserContext } from '../context/UserContext'
 import { login } from '../utils/login'
 
 
 const Login = () => {
-  const { user, setUser } = useContext(GlobalContext)
   const [formError, setFormError] = useState(false);
 
   const {
@@ -20,16 +19,22 @@ const Login = () => {
   } = useForm({});
 
 
-  const onSubmit = async (data) => {
+  const { user, setUser } = useContext(UserContext)
+  const onSubmit = (data) => {
     if (isSubmitSuccessful) {
       const values = getValues();
-      const user = await login(values)
-      setUser(user);
+      handleLogin(values)
     }
+  }
+  const handleLogin = async (values) => {
+    const user = await login(values)
+    setUser(user);
+    console.log(user)
   }
 
   return (
     <>
+      <pre>{JSON.stringify(user,null,2)}</pre>
       <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
         <div className='hidden sm:block'>
           <img className='w-full h-screen object-cover' src={background} alt='' />
