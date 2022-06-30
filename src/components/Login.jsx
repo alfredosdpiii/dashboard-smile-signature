@@ -1,49 +1,31 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import logo1 from '../assets/images/logo1.png'
 import background from '../assets/images/background1.jpg'
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
+import { GlobalContext } from '../context/GlobalState'
+import { login } from '../utils/login'
 
 
 const Login = () => {
+  const { user, setUser } = useContext(GlobalContext)
   const [formError, setFormError] = useState(false);
 
-  const { 
-    register, 
-    handleSubmit, 
+  const {
+    register,
+    handleSubmit,
     getValues,
     formState: { errors, isSubmitSuccessful },
     setError
   } = useForm({});
 
-  useEffect(() => {
-    if(isSubmitSuccessful) {
+
+  const onSubmit = async (data) => {
+    if (isSubmitSuccessful) {
       const values = getValues();
-
-      axios({
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        url: 'http://localhost:3001/login',
-        data:{"user":{
-          "email": values.email,
-          "password": values.password
-          }
-        } 
-      })
-      .then((res) => {
-          console.log(values)
-          console.log(res)
-        })
-      .catch((error) => {
-        if (error) {
-          setFormError(true)
-        }
-      })
+      const user = await login(values)
+      setUser(user);
     }
-  },[isSubmitSuccessful])
-
-  const onSubmit = (data) => {
-   console.log(data)
   }
 
   return (
@@ -58,19 +40,19 @@ const Login = () => {
             <img className='object-scale-down h-21 w-40 mx-auto' src={logo1} alt='' />
             <div className='flex flex-col text-black py-2'>
               <label className='black'>Email</label>
-              <input 
-              className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
-              type="text"
-              {...register("email", {required: "This is required"})}
+              <input
+                className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white'
+                type="text"
+                {...register("email", { required: "This is required" })}
               />
               <span className='text-red-600'>{errors.email?.message}</span>
             </div>
             <div className='flex flex-col text-black py-2'>
               <label>Password</label>
-              <input 
-              className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white' 
-              type="password" 
-              {...register("password", {required: "This is required"})}
+              <input
+                className='rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 focus:bg-gray-600 focus:outline-none focus:text-white'
+                type="password"
+                {...register("password", { required: "This is required" })}
               />
               <span className='text-red-600'>{errors.password?.message}</span>
             </div>
