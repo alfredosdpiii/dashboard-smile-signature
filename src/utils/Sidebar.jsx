@@ -1,10 +1,8 @@
 import React from 'react'
-import tooth from '../assets/icons/sidebar-logo.png'
 import logo from '../assets/images/smile-signature.jpg'
 import chart from '../assets/icons/chart-fill.png'
 import calendar from '../assets/icons/calendar.png'
 import transaction from '../assets/icons/chart.png'
-import manager from '../assets/icons/manager.png'
 
 
 const Sidebar = () => {
