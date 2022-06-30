@@ -4,17 +4,19 @@ import logo from '../assets/images/smile-signature.jpg'
 import chart from '../assets/icons/chart-fill.png'
 import calendar from '../assets/icons/calendar.png'
 import transaction from '../assets/icons/chart.png'
+import manager from '../assets/icons/manager.png'
 
 
 const Sidebar = () => {
+  const isAdmin = true
 
   return (
     <aside className="max-w-[15%] h-full">
-      <div className="sticky top-0 p-5 pt-8 bg-[#081a51ef] w-full h-full">
+      <div className="sticky top-0 p-5 pt-8 bg-gray-900 w-full h-full">
         <div className="flex flex-col overflow-hidden justify-start align-middle h-full">
-          <div className="flex flex-col justify-center items-center mb-10">
-            <img src={tooth} className="object-scale-down mx-auto rounded-full max-w-[70px]" />
-            <h3 className='text-white text-lg'>Smile Signature</h3>
+          <div className="flex flex-row justify-start items-center mb-10 mt-5">
+            <img src={logo} className="object-scale-down mr-3 rounded-full max-w-[50px]" />
+            <h3 className='text-white text-lg font-medium'>Smile Signature</h3>
           </div>
 
           <ul className="flex flex-col text-[#ffffff] opacity-0.1 h-full justify-start mt-6">
@@ -56,7 +58,20 @@ const Sidebar = () => {
                 <p className='text-base'>Transactions</p>
               </li>
             </div>
+            {isAdmin && (
+              <div className='flex-row pl-5  py-5 justify-start flex rounded-md cursor-pointer hover:bg-[#ffffff] hover:bg-opacity-30 items-center gap-x-4'>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <li className="list-none">
+                <p className='text-base'>Admin</p>
+              </li>
+              </div>
+            )}
           </ul>
+          <div className='w-full p-3'>
+            <button className='bg-transparent hover:bg-yellow-600 text-yellow-600 font-semibold hover:text-white py-2 px-4 border border-yellow-300 hover:border-transparent rounded-lg w-full'>LOGOUT</button>
+          </div>
         </div>
       </div>
     </aside>

@@ -13,6 +13,7 @@ import StaffList from './components/StaffList';
 import StaffProfile from './components/StaffProfile';
 import ProfileSetup from './components/ProfileSetup';
 import Scheduler from './components/Scheduler'
+import Admin from './components/Admin';
 
 function App() {
 
@@ -20,15 +21,16 @@ function App() {
       <div className="flex flex-row h-screen w-screen">
         <Sidebar />
         <main role="main" className="w-screen pt-1 px-2">
-          <Scheduler />
+          {/* <Scheduler /> */}
           {/* <PatientList /> */}
           {/* <DentalHistory /> */}
           {/* <DentalRecord /> */}
           {/* <PatientRegister /> */}
-          {/* <PatientTransaction /> */}
+          {/* PatientTransaction />< */}
           {/* <TransactionModal /> */}
           {/* <StaffList /> */}
           {/* <ProfileSetup /> */}
+          <Admin />
         </main>
       </div>
   )
