@@ -2,10 +2,9 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import enUS from 'date-fns/locale/en-US'
-import logo1 from '../assets/images/logo1.png'
-import logo2 from '../assets/images/logo2.png'
+import axios from "axios";
 
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import SchedModal from "./SchedModal";
@@ -27,16 +26,38 @@ const localizer = dateFnsLocalizer({
 
 const Scheduler = () => {
   const [isScheduling, setIsScheduling] = useState(false)
+  const [events, setEvents] = useState([])
 
   const handleSetAppointment = () => {
     setIsScheduling(!isScheduling)
     console.log(isScheduling)
   }
 
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/calendar_events'
+    }).then((res) => {
+      const events = res.data;
+      const formatted_events = []
+      events.map((event) => {
+        const new_object = {
+          ...event,
+          start: new Date(event.start),
+          end: new Date(event.end)
+        }
+        formatted_events.push(new_object)
+      })
+
+      setEvents(formatted_events)
+    })
+  }, [])
+
+
   return (
     <>
         <div className="flex flex-col">
-          <div className="flex justify-between h-20 w-[109em] border-b-2 px-5">
+          <div className="flex justify-between h-20 w-full border-b-2 px-5 over">
             <div>
             </div>
             <div className="flex items-center">
@@ -51,9 +72,10 @@ const Scheduler = () => {
           <div>
             <Calendar
               localizer={localizer}
+              events={events}
               startAccessor="start"
               endAccessor="end"
-              style={{ height: '55em', width: '109em', margin: "5px" }}
+              style={{ height: '56em', width: '100%', padding: "5px" }}
             />
           </div>
         </div>
