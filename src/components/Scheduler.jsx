@@ -5,6 +5,7 @@ import startOfWeek from "date-fns/startOfWeek";
 import React, { useState, useEffect} from "react";
 import enUS from 'date-fns/locale/en-US'
 import axios from "axios";
+import EventModal from "./EventModal";
 
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import SchedModal from "./SchedModal";
@@ -26,11 +27,21 @@ const localizer = dateFnsLocalizer({
 
 const Scheduler = () => {
   const [isScheduling, setIsScheduling] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const [events, setEvents] = useState([])
+  const [participants, setParticipants] = useState([])
+  const [event, setEvent] = useState('')
 
   const handleSetAppointment = () => {
     setIsScheduling(!isScheduling)
     console.log(isScheduling)
+  }
+
+  const handleEventSelect = (e) => {
+    console.log(e)
+    setShowModal(true)
+    setParticipants(e.participants)
+    setEvent(e)
   }
 
   useEffect(() => {
@@ -75,6 +86,7 @@ const Scheduler = () => {
               events={events}
               startAccessor="start"
               endAccessor="end"
+              onSelectEvent={handleEventSelect}
               style={{ height: '56em', width: '100%', padding: "5px" }}
             />
           </div>
@@ -82,6 +94,9 @@ const Scheduler = () => {
 
       {isScheduling && (
         <SchedModal setIsScheduling={setIsScheduling} />
+      )}
+      {showModal && (
+        <EventModal setShowModal={setShowModal} participants={participants} event={event}/>
       )}
     </>
   )
