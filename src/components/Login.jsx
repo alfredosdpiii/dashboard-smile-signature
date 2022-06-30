@@ -20,12 +20,13 @@ const Login = () => {
 
 
   const { user, setUser } = useContext(UserContext)
-  const onSubmit = (data) => {
-    if (isSubmitSuccessful) {
-      const values = getValues();
-      handleLogin(values)
-    }
-  }
+  // const onSubmit = (data) => {
+  //   if (isSubmitSuccessful) {
+  //     const values = getValues();
+  //     handleLogin(values)
+  //   }
+  //
+  // }
   const handleLogin = async (values) => {
     const user = await login(values)
     setUser(user);
@@ -34,14 +35,20 @@ const Login = () => {
 
   return (
     <>
-      <pre>{JSON.stringify(user,null,2)}</pre>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
       <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
         <div className='hidden sm:block'>
           <img className='w-full h-screen object-cover' src={background} alt='' />
         </div>
 
         <div className='bg-neutral-200 flex flex-col justify-center'>
-          <form className='max-w-[400px] w-full mx-auto bg-white p-8 px-8 rounded-lg' onSubmit={handleSubmit(onSubmit)}>
+          <form className='max-w-[400px] w-full mx-auto bg-white p-8 px-8 rounded-lg' onSubmit={handleSubmit((e)=>{
+            try{
+              handleLogin(e)
+            } catch (e) {
+              console.log(e)
+            }
+          })}>
             <img className='object-scale-down h-21 w-40 mx-auto' src={logo1} alt='' />
             <div className='flex flex-col text-black py-2'>
               <label className='black'>Email</label>
