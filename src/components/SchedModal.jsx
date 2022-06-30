@@ -16,7 +16,7 @@ const SchedModal = ({setIsScheduling}) => {
               {/*body*/}
               <div className="relative p-6 flex-auto">
                 <iframe
-                  src="https://calendly.com/smile-signature"
+                  src="https://calendly.com/borkybork"
                   width="1000px"
                   height="700px"
                   frameborder="0"
