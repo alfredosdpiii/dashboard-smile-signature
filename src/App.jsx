@@ -13,13 +13,18 @@ import StaffList from './components/StaffList';
 import StaffProfile from './components/StaffProfile';
 import ProfileSetup from './components/ProfileSetup';
 import Scheduler from './components/Scheduler'
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect } from "react"
 import { UserContext } from "./context/UserContext";
 
 
 function App() {
   const [user, setUser] = useState(null)
   const value = useMemo(() => ({ user, setUser }), [user, setUser])
+
+  // useEffect(()=>{
+  //   const retrievedUser = JSON.parse(localStorage.getItem('user'))
+  //   localStorage.getItem('user') === null ? localStorage.setItem('user', null) : setUser(value)
+  // }, [value])
 
 
   return (

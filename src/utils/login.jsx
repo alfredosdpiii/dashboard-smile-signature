@@ -36,15 +36,19 @@ export const login = async (values) => {
   };
   const user = axios(options)
     .then(response => {
-      // console.log(response.headers)
+      console.log(response)
       // console.log(response.data.data)
       // console.log(user)
       // let stringy = JSON.stringify(user)
       const userData = {
-        id: response.data.data.id,
-        email: response.data.data.email,
-        token: response.headers.authorization
+        id: response.data.user.id,
+        email: response.data.user.email,
+        token: response.headers.authorization,
+        role: response.data.user.role,
+        gender: response.data.user.gender
       }
+
+      localStorage.setItem('user', JSON.stringify(userData))
 
       return userData
     });
