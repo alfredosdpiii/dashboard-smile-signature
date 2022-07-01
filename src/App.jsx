@@ -16,31 +16,45 @@ import Scheduler from './components/Scheduler'
 import Admin from './components/Admin';
 import { UserContext } from "./context/UserContext";
 import React, { useState, useMemo, useEffect } from "react"
+import { Link, Route, Redirect, useLocation } from "wouter";
 
 function App() {
   const [user, setUser] = useState(null)
   const value = useMemo(() => ({ user, setUser }), [user, setUser])
+  const [location, setLocation] = useLocation();
 
   return (
     <UserContext.Provider value={value}>
-    {user ?
-      <div className="flex flex-row h-screen w-screen">
-        <Sidebar />
-        <main role="main" className="w-screen pt-1 px-2">
-          {/* <Scheduler /> */}
-          {/* <PatientList /> */}
-          {/* <DentalHistory /> */}
-          {/* <DentalRecord /> */}
-          {/* <PatientRegister /> */}
-          {/* PatientTransaction />< */}
-          {/* <TransactionModal /> */}
-          {/* <StaffList /> */}
-          {/* <ProfileSetup /> */}
-          <Admin />
-        </main>
-      </div>
-      : 
-      <Login />}
+      {user && user.has_profile === true ?
+        <div className="flex flex-row h-screen w-screen">
+          <Sidebar />
+          <main role="main" className="w-screen pt-1 px-2">
+            <Route path='/patients' component={PatientList} />
+            <Route path='/calendar' component={Scheduler} />
+            <Route path='/staff' component={StaffList} />
+            {/* <Route path='/' component={Overview} /> */}
+
+              {/* <Scheduler /> */}
+            {/*   <DentalHistory /> */}
+            {/*   <DentalRecord /> */}
+            {/*   <PatientRegister /> */}
+            {/* <PatientTransaction /> */}
+            {/* <TransactionModal /> */}
+            {/*   <StaffList /> */}
+            {/*   <ProfileSetup /> */}
+            {/*   <Admin /> */}
+          </main>
+        </div>
+        : user && user.has_profile === false ?
+        setLocation('/profile-setup')
+          :
+          <Redirect to={'/login'} />
+
+      }
+          {/* <Redirect to={'/profile-setup'} /> */}
+
+      <Route path='/login' component={Login} />
+      <Route path='/profile-setup' component={ProfileSetup} />
     </UserContext.Provider>
   )
 }
