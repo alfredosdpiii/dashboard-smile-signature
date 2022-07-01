@@ -46,7 +46,7 @@ export const login = async (values) => {
         token: response.headers.authorization,
         role: response.data.user.role,
         gender: response.data.user.gender,
-        profile: response.data.user.profile
+        profile: response.data.user.has_profile
       }
 
       localStorage.setItem('user', JSON.stringify(userData.token))
