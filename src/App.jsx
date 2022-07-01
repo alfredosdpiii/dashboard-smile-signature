@@ -43,17 +43,8 @@ function App() {
               <Route path='/dental_history' component={DentalHistory} />
               <Route path='/dental_record' component={DentalRecord} />
               <Route path='/patient_transaction' component={PatientTransaction} />
-              {/* <Route path='/' component={Overview} /> */}
+              <Route path='/admin' component={Admin} />
 
-              {/* <Scheduler /> */}
-              {/*   <DentalHistory /> */}
-              {/*   <DentalRecord /> */}
-              {/*   <PatientRegister /> */}
-              {/* <PatientTransaction /> */}
-              {/* <TransactionModal /> */}
-              {/*   <StaffList /> */}
-              {/*   <ProfileSetup /> */}
-              {/*   <Admin /> */}
             </ClickedItemContext.Provider>
           </main>
         </div>
