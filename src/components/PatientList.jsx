@@ -47,6 +47,7 @@ function PatientList() {
   const handleTransactionClick = (row) => {
     console.log(row.original)
     setSelectedPatient(row.original)
+    setItem(row.original)
     setLocation('/patient_transaction')
   }
 
