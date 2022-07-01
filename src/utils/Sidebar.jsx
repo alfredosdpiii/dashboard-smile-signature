@@ -91,7 +91,7 @@ const Sidebar = () => {
             }
           </ul>
           <div className='w-full p-3'>
-            <button className='bg-transparent hover:bg-yellow-600 text-yellow-600 font-semibold hover:text-white py-2 px-4 border border-yellow-300 hover:border-transparent rounded-lg w-full' 
+            <button className='bg-transparent hover:bg-emerald-600 text-emerald-600 font-semibold hover:text-white py-2 px-4 border border-emerald-300 hover:border-transparent rounded-lg w-full' 
     onClick={(e)=>handleLogout(e)}>LOGOUT</button>
           </div>
         </div>
