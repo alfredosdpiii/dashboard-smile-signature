@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import 'regenerator-runtime/runtime';
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from './Table'
 import maleIcon from '../assets/icons/male-avatar.jpg'
@@ -9,6 +9,7 @@ import { useLocation } from "wouter";
 import PatientRegister from './PatientRegister';
 import DentalHistory from './DentalHistory';
 import PatientTransaction from './PatientTransaction';
+import { ClickedItemContext } from '../context/ClickedItemContext'
 
 
 
@@ -18,6 +19,9 @@ function PatientList() {
   const [selectedRows, setSelectedData] = useState([])
   const [selectedPatient, setSelectedPatient] = useState('')
   const [location, setLocation] = useLocation();
+
+  //context
+  const { item, setItem } = useContext(ClickedItemContext)
 
   const onSelectedRows = rows => {
     const mappedRows = rows.map(r => r.original);
@@ -36,12 +40,14 @@ function PatientList() {
   const handleRecordClick = (row) => {
     console.log(row.original)
     setSelectedPatient(row.original)
+    setItem(row.original)
     setLocation('/dental_history')
   }
 
   const handleTransactionClick = (row) => {
     console.log(row.original)
     setSelectedPatient(row.original)
+    setItem(row.original)
     setLocation('/patient_transaction')
   }
 
@@ -57,7 +63,7 @@ function PatientList() {
       patients.map((patient) => {
         const new_object = {
           ...patient,
-          imgAvatar: patient.gender === 'Male' ? maleIcon : femaleICon
+          imgAvatar: patient.gender === 'male' ? maleIcon : femaleICon
         }
         new_patients.push(new_object)
       })
@@ -128,10 +134,10 @@ function PatientList() {
     <>
       <div className="min-h-full w-full bg-gray-100 text-gray-900">
         <main className="w-full h-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="w-full flex flex-row justify-between">
+          <div className="w-full flex flex-row justify-between mt-5">
             <h1 className="text-xl font-semibold"> PATIENT LIST 📃</h1>
           </div>
-          <div className="mt-6">
+          <div className="mt-20 h-full">
             <Table onSelectedRows={onSelectedRows} columns={columns} data={data} label="Register Patient" handleClick={handleAddPatient}/>
           </div>
         </main>

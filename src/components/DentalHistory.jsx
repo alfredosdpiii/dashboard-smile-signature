@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Table, { AvatarCell } from './Table'
 import recordIcon from '../assets/icons/dental-record-icon.jpg'
+import { ClickedItemContext } from '../context/ClickedItemContext';
 import axios from 'axios'
 import dayjs from 'dayjs'
 
 const DentalHistory = () => {
   const [dentalRecords, setDentalRecords] = useState([])
+  const {item, setItem} = useContext(ClickedItemContext)
+
+  console.log(item)
 
   const columns = React.useMemo(() => [ 
     {
@@ -77,15 +81,15 @@ const DentalHistory = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/dental_records'
+      url: `http://127.0.0.1:3001/dental_records/${item.id}`
     }).then((res) => {
       const dental_records = res.data;
+      console.log(dental_records)
       const new_dental_records = []
       dental_records.map((record) => {
         const new_object = {
           ...record,
-          icon: recordIcon,
-          // record.created_at = dayjs(record.created_at).format('DD/MM/YYY')
+          icon: recordIcon
         }
         new_dental_records.push(new_object)
       })

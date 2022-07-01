@@ -83,9 +83,9 @@ const StaffList = () => {
 
   return (
     <>
-      <div className="h-min-full w-full bg-gray-100 text-gray-900">
+      <div className="h-full w-full bg-gray-100 text-gray-900">
         <main className="w-full h-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="w-[12%] flex flex-row justify-between items-center">
+          <div className="w-[12%] flex flex-row justify-between items-center mt-5">
             <h1 className="text-2xl font-semibold text-center">
               STAFF LIST 
             </h1>
@@ -94,7 +94,7 @@ const StaffList = () => {
               src={staffIcon} 
               alt='' />
           </div>
-          <div className="mt-6">
+          <div className="mt-20">
             <Table onSelectedRows={onSelectedRows} columns={columns} data={data}/>
           </div>
         </main>

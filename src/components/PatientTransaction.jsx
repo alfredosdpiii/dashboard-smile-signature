@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Table, { AvatarCell, StatusPill } from './Table'
 import transactionIcon from '../assets/icons/transaction-icon-3.png'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import TransactionModal from './TransactionModal'
+import { ClickedItemContext } from '../context/ClickedItemContext';
 
 const PatientTransaction = () => {
   const [transactions, setTransactions] = useState([])
   const [isCreatingTransaction, setIsCreatingTransaction] = useState(false)
+  const {item, setItem} = useContext(ClickedItemContext)
   const columns = React.useMemo(() => [ 
     {
       Header: "ID",
@@ -82,8 +84,9 @@ const PatientTransaction = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/patient_record/19/transactions'
+      url: `http://127.0.0.1:3001/patient_record/${item.id}/transactions`
     }).then((res) => {
+      console.log(res)
       const transactions = res.data;
       const new_transactions = []
       transactions.map((transaction) => {
