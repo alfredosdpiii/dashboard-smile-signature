@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
 
-const RemoveStaff = ({setIsRemovingStaff}) => {
+const RemoveStaff = ({setIsRemovingStaff, staff}) => {
   const [users, setUsers] = useState([])
   const [message, setMessage] = useState([])
+  const [selectedUser, setSelectedUser] = useState('')
+
 
   useEffect(() => {
     axios({
@@ -37,10 +39,10 @@ const RemoveStaff = ({setIsRemovingStaff}) => {
         axios({
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
-          url: 'http://localhost:3001/current_user/delete',
-          data:{ 
-            "email": values.email
-          }
+          url: 'http://localhost:3001/user/delete',
+          data: {    
+                "id": values.id
+             }
         })
         .then((res) => {
           console.log(res)
@@ -77,12 +79,12 @@ const RemoveStaff = ({setIsRemovingStaff}) => {
                   placeholder="@email_address" 
                   {...register("registerEmail", { required: "This is required" })}/> */}
                   <select className='shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                  {...register("email", {required: "This is required"})}>
+                  {...register("id", {required: "This is required"})}>
                     {users.map(user =>
                       <option 
                         className='w-full' 
                         key={user.email} 
-                        value={user.email}>
+                        value={user.id}>
                         {user.email}
                       </option>
                     )};

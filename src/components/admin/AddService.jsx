@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios'
 
 const AddService = ({setIsAddingService}) => {
+  const [message,setMessage] = useState('')
+
   const {
     register,
     handleSubmit,
@@ -15,15 +17,21 @@ const AddService = ({setIsAddingService}) => {
   useEffect(() => {
     if(isSubmitSuccessful) {
       const values = getValues();
+      console.log(values.name)
 
       axios({
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         url: 'http://localhost:3001/services/create',
-        data:{ "name": values.name }
+        data: {    
+          "service":{
+              "name": values.name
+                 } 
+           }
       })
       .then((res) => {
         console.log(res)
+        setMessage(res.data.message)
         reset()
       })
     }
@@ -44,7 +52,7 @@ const AddService = ({setIsAddingService}) => {
               </h3>
               <p className='text-lg leading-relaxed text-zinc-500'></p>
             </div>
-            <div className="relative p-6 flex-auto text-center flex justify-center">
+            <div className="relative p-6 flex-auto text-center flex flex-col justify-center items-center">
               <div className='w-[80%] p-3'>
                 <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4' 
                 onSubmit={handleSubmit(handleSubmit)}>
@@ -65,6 +73,7 @@ const AddService = ({setIsAddingService}) => {
                   </div>
                 </form>
               </div>
+              <span className='text-red-500'>{message}</span>
             </div>
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
               <button
