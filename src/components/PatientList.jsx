@@ -63,7 +63,7 @@ function PatientList() {
       patients.map((patient) => {
         const new_object = {
           ...patient,
-          imgAvatar: patient.gender === 'Male' ? maleIcon : femaleICon
+          imgAvatar: patient.gender === 'male' ? maleIcon : femaleICon
         }
         new_patients.push(new_object)
       })
@@ -134,10 +134,10 @@ function PatientList() {
     <>
       <div className="min-h-full w-full bg-gray-100 text-gray-900">
         <main className="w-full h-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-          <div className="w-full flex flex-row justify-between">
+          <div className="w-full flex flex-row justify-between mt-5">
             <h1 className="text-xl font-semibold"> PATIENT LIST 📃</h1>
           </div>
-          <div className="mt-6">
+          <div className="mt-20 h-full">
             <Table onSelectedRows={onSelectedRows} columns={columns} data={data} label="Register Patient" handleClick={handleAddPatient}/>
           </div>
         </main>
