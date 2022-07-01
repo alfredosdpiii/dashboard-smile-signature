@@ -30,7 +30,7 @@ const Login = () => {
     const user = await login(values)
     setUser(user);
     // <Navigate to='/patients'/> 
-    setLocation('/patients')
+    setLocation('/')
     console.log(user)
   }
 
