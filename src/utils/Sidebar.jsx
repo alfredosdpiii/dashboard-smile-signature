@@ -4,11 +4,17 @@ import chart from '../assets/icons/chart-fill.png'
 import calendar from '../assets/icons/calendar.png'
 import transaction from '../assets/icons/chart.png'
 import { UserContext } from '../context/UserContext'
-import { Link } from 'wouter'
+import { Link, useLocation } from 'wouter'
 
 
 const Sidebar = () => {
-  const { user } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
+  const [location, setLocation] = useLocation();
+
+  const handleLogout=()=>{
+    setUser(null)
+    setLocation('/login')
+  }
 
   return (
     <aside className="max-w-[15%] h-full">
@@ -85,7 +91,8 @@ const Sidebar = () => {
             }
           </ul>
           <div className='w-full p-3'>
-            <button className='bg-transparent hover:bg-yellow-600 text-yellow-600 font-semibold hover:text-white py-2 px-4 border border-yellow-300 hover:border-transparent rounded-lg w-full'>LOGOUT</button>
+            <button className='bg-transparent hover:bg-yellow-600 text-yellow-600 font-semibold hover:text-white py-2 px-4 border border-yellow-300 hover:border-transparent rounded-lg w-full' 
+    onClick={(e)=>handleLogout(e)}>LOGOUT</button>
           </div>
         </div>
       </div>
