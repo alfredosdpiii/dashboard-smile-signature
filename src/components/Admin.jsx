@@ -1,6 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Admin = () => {
+  const [totalPatients, setTotalPatients] = useState('')
+  const [newPatients, setNewPatients] = useState('')
+  const [totalAppointments, setTotalAppointments] = useState()
+  const [newAppointments, setNewAppointments] = useState()
+  const [totalTransactions, setTotalTransactions] = useState('')
+  const [totalSales, setTotalSales] = useState('')
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/report_patients'
+    }).then((res) => {
+      console.log(res)
+      const report = res.data
+      setTotalPatients(report.total)
+      setNewPatients(report.new)
+    })
+  }, [])
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/report_appointments'
+    }).then((res) => {
+      console.log(res)
+      const report = res.data
+      setTotalAppointments(report.total)
+      setNewAppointments(report.new)
+    })
+  }, [])
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/report_transactions'
+    }).then((res) => {
+      console.log(res)
+      const report = res.data
+      setTotalTransactions(report.monthly_transactions)
+      setTotalSales(report.monthly_sales)
+    })
+  }, [])
+
   return (
     <div className='w-full h-full p-5 flex flex-row bg-[#ffff]'>
       {/* 1st half */}
@@ -17,7 +61,7 @@ const Admin = () => {
             <div className='w-full flex flex-col mt-10'>
               <div className='p-3 m-2 border border-solid border-zinc-200 h-full'>
                 <div className='text-center flex justify-center text-3xl h-full items-center'>
-                  1
+                  {totalPatients}
                 </div>
               </div>
               <div className='text-center flex justify-center text-xl h-full items-center mt-2 text-gray-600'>
@@ -25,7 +69,15 @@ const Admin = () => {
               </div>
               <div className='p-3 m-2 border border-solid border-zinc-200 h-full'>
                 <div className='text-center flex justify-center text-3xl h-full items-center'>
-                  1
+                  {newPatients}
+                </div>
+              </div>
+              <div className='text-center flex justify-center text-xl h-full items-center mt-2 text-gray-600'>
+                <p>🎈 New Patients</p>
+              </div>
+              <div className='p-3 m-2 border border-solid border-zinc-200 h-full'>
+                <div className='text-center flex justify-center text-3xl h-full items-center'>
+                  {totalAppointments}
                 </div>
               </div>
               <div className='text-center flex justify-center text-xl h-full items-center mt-2 text-gray-600'>
@@ -33,7 +85,15 @@ const Admin = () => {
               </div>
               <div className='p-3 m-2 border border-solid border-zinc-200 h-full'>
                 <div className='text-center flex justify-center text-3xl h-full items-center'>
-                  1
+                  {newAppointments}
+                </div>
+              </div>
+              <div className='text-center flex justify-center text-xl h-full items-center mt-2 text-gray-600'>
+                <p>📆 New Appointments</p>
+              </div>
+              <div className='p-3 m-2 border border-solid border-zinc-200 h-full'>
+                <div className='text-center flex justify-center text-3xl h-full items-center'>
+                  {totalSales}
                 </div>
               </div>
               <div className='text-center flex justify-center text-xl h-full items-center mt-2 text-gray-600'>
