@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Link, Route, Redirect, useLocation } from "wouter";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm, Controller } from 'react-hook-form';
+import { UserContext } from '../context/UserContext'
 import axios from "axios";
 import dayjs from 'dayjs'
 
 const ProfileSetup = () => {
   const [selectedDay, setSelectedDay] = useState("");
   const [showCalendar, setShowCalendar] = useState(false)
+  const { user, setUser } = useContext(UserContext)
   const [location, setLocation] = useLocation()
 
   const { 
@@ -58,6 +60,11 @@ const ProfileSetup = () => {
 
   const onSubmit = (data) => {
     console.log(data)
+  }
+
+  const handleBack=()=>{
+    setUser(null)
+    setLocation('/login')
   }
 
 
@@ -166,8 +173,9 @@ const ProfileSetup = () => {
             <div className="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
               <button
                 className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button">
-                Close
+                type="button"
+                onClick={(e) => handleBack(e)}>
+                Go Back
               </button>
             </div>
           </div>
