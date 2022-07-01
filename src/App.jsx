@@ -25,7 +25,7 @@ function App() {
 
   return (
     <UserContext.Provider value={value}>
-      {user && user.role === 'admin' ?
+      {user && user.has_profile === true ?
         <div className="flex flex-row h-screen w-screen">
           <Sidebar />
           <main role="main" className="w-screen pt-1 px-2">
@@ -34,7 +34,7 @@ function App() {
             <Route path='/staff' component={StaffList} />
             {/* <Route path='/' component={Overview} /> */}
 
-            {/*   <Scheduler /> */}
+              {/* <Scheduler /> */}
             {/*   <DentalHistory /> */}
             {/*   <DentalRecord /> */}
             {/*   <PatientRegister /> */}
@@ -45,7 +45,7 @@ function App() {
             {/*   <Admin /> */}
           </main>
         </div>
-        : user && user.role === 'dentist' ?
+        : user && user.has_profile === false ?
         setLocation('/profile-setup')
           :
           <Redirect to={'/login'} />
