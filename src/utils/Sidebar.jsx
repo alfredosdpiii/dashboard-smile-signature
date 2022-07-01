@@ -69,12 +69,12 @@ const Sidebar = () => {
                 </Link>
               </li>
             </div>
-            <div className='flex-row pl-5  py-5 justify-start flex rounded-md cursor-pointer hover:bg-[#ffffff] hover:bg-opacity-30 items-center gap-x-4'>
+            <div className='flex-row pl-5  py-5 justify-start flex rounded-md cursor-pointer hover:bg-[#ffffff] hover:bg-opacity-30 items-center gap-x-3'>
               <img src={transaction} />
               <li className="list-none">
                 {/* <p className='text-base'>Transactions</p> */}
                 <Link href="/obligations">
-                  <a className='text-base'>Obligations</a>
+                  <a className='text-base'>Receivables</a>
                 </Link>
               </li>
             </div>
