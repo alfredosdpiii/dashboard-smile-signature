@@ -6,6 +6,7 @@ import AddStaff from './admin/AddStaff.jsx';
 import RemoveStaff from './admin/RemoveStaff.jsx';
 import AddService from './admin/AddService.jsx';
 import RemoveService from './admin/RemoveService.jsx';
+import peso from '../assets/icons/peso-sign.png'
 
 const Admin = () => {
   const [totalPatients, setTotalPatients] = useState('')
@@ -182,7 +183,8 @@ const Admin = () => {
                 </div>
                 <div className='p-3 m-2 border border-solid border-zinc-200 h-full'>
                   <div className='text-center flex justify-center text-3xl h-full items-center'>
-                    {totalSales}
+                    <img src={peso} className='object-scale-down h-6 w-6 mr-2'/>
+                    <p>{totalSales}</p>
                   </div>
                 </div>
                 <div className='text-center flex justify-center text-xl h-full items-center mt-2 text-gray-600'>
