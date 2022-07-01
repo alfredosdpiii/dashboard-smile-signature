@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link, Route, Redirect, useLocation } from "wouter";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm, Controller } from 'react-hook-form';
@@ -8,6 +9,7 @@ import dayjs from 'dayjs'
 const ProfileSetup = () => {
   const [selectedDay, setSelectedDay] = useState("");
   const [showCalendar, setShowCalendar] = useState(false)
+  const [location, setLocation] = useLocation()
 
   const { 
     register, 
@@ -43,6 +45,7 @@ const ProfileSetup = () => {
         .then((res) => {
           console.log(values)
           console.log(res)
+          setLocation('/calendar')
         })
     }
   },[isSubmitSuccessful])
