@@ -14,10 +14,16 @@ import StaffProfile from './components/StaffProfile';
 import ProfileSetup from './components/ProfileSetup';
 import Scheduler from './components/Scheduler'
 import Admin from './components/Admin';
+import { UserContext } from "./context/UserContext";
+import React, { useState, useMemo, useEffect } from "react"
 
 function App() {
+  const [user, setUser] = useState(null)
+  const value = useMemo(() => ({ user, setUser }), [user, setUser])
 
   return (
+    <UserContext.Provider value={value}>
+    {user ?
       <div className="flex flex-row h-screen w-screen">
         <Sidebar />
         <main role="main" className="w-screen pt-1 px-2">
@@ -33,6 +39,9 @@ function App() {
           <Admin />
         </main>
       </div>
+      : 
+      <Login />}
+    </UserContext.Provider>
   )
 }
 
