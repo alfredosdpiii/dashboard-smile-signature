@@ -24,30 +24,35 @@ function App() {
 
   return (
     <UserContext.Provider value={value}>
-      {user ?
+      {user && user.has_profile === true ?
         <div className="flex flex-row h-screen w-screen">
           <Sidebar />
           <main role="main" className="w-screen pt-1 px-2">
-        <Route path='/patients' component={PatientList} />
-        <Route path='/calendar' component={Scheduler} />
-        <Route path='/staff' component={StaffList} />
-        {/* <Route path='/' component={Overview} /> */}
+            <Route path='/patients' component={PatientList} />
+            <Route path='/calendar' component={Scheduler} />
+            <Route path='/staff' component={StaffList} />
+            {/* <Route path='/' component={Overview} /> */}
 
-          {/*   <Scheduler /> */}
-          {/*   <DentalHistory /> */}
-          {/*   <DentalRecord /> */}
-          {/*   <PatientRegister /> */}
-          {/* <PatientTransaction /> */}
-          {/* <TransactionModal /> */}
-          {/*   <StaffList /> */}
-          {/*   <ProfileSetup /> */}
-          {/*   <Admin /> */}
+            {/*   <Scheduler /> */}
+            {/*   <DentalHistory /> */}
+            {/*   <DentalRecord /> */}
+            {/*   <PatientRegister /> */}
+            {/* <PatientTransaction /> */}
+            {/* <TransactionModal /> */}
+            {/*   <StaffList /> */}
+            {/*   <ProfileSetup /> */}
+            {/*   <Admin /> */}
           </main>
         </div>
+        : user && user.has_profile === false ?
+          <Redirect to={'/profile-setup'} />
+          :
+          <Redirect to={'/login'} />
 
-        : <Redirect to={'/login'} />}
+      }
 
-        <Route path='/login' component={Login} />
+      <Route path='/login' component={Login} />
+      <Route path='/profile-setup' component={ProfileSetup} />
     </UserContext.Provider>
   )
 }
