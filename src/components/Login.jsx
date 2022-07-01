@@ -29,8 +29,7 @@ const Login = () => {
   const handleLogin = async (values) => {
     const user = await login(values)
     setUser(user);
-    // <Navigate to='/patients'/> 
-    setLocation('/')
+    setLocation('/calendar')
     console.log(user)
   }
 
