@@ -15,6 +15,7 @@ import StaffProfile from './components/StaffProfile';
 import ProfileSetup from './components/ProfileSetup';
 import Scheduler from './components/Scheduler'
 import Admin from './components/Admin';
+import Obligations from './components/Obligations';
 import { UserContext } from "./context/UserContext";
 import { ClickedItemContext } from "./context/ClickedItemContext";
 import React, { useState, useMemo, useEffect } from "react"
@@ -38,6 +39,7 @@ function App() {
               <Route path='/patients' component={PatientList} />
               <Route path='/calendar' component={Scheduler} />
               <Route path='/staff' component={StaffList} />
+              <Route path='/obligations' component={Obligations} />
               <Route path='/dental_history' component={DentalHistory} />
               <Route path='/dental_record' component={DentalRecord} />
               <Route path='/patient_transaction' component={PatientTransaction} />
