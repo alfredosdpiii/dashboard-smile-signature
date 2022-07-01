@@ -16,12 +16,15 @@ import ProfileSetup from './components/ProfileSetup';
 import Scheduler from './components/Scheduler'
 import Admin from './components/Admin';
 import { UserContext } from "./context/UserContext";
+import { ClickedItemContext } from "./context/ClickedItemContext";
 import React, { useState, useMemo, useEffect } from "react"
 import { Link, Route, Redirect, useLocation } from "wouter";
 
 function App() {
   const [user, setUser] = useState(null)
   const value = useMemo(() => ({ user, setUser }), [user, setUser])
+  const [item, setItem] = useState(null)
+  const itemValue = useMemo(() => ({ item, setItem }), [item, setItem])
   const [location, setLocation] = useLocation();
 
   return (
@@ -30,33 +33,35 @@ function App() {
         <div className="flex flex-row h-screen w-screen">
           <Sidebar />
           <main role="main" className="w-screen pt-1 px-2">
-            <Route path='/' component={Overview} />
-            <Route path='/patients' component={PatientList} />
-            <Route path='/calendar' component={Scheduler} />
-            <Route path='/staff' component={StaffList} />
-            <Route path='/dental_history' component={DentalHistory} />
-            <Route path='/dental_record' component={DentalRecord} />
-            <Route path='/patient_transaction' component={PatientTransaction} />
-            {/* <Route path='/' component={Overview} /> */}
+            <ClickedItemContext.Provider value={itemValue}>
+              <Route path='/' component={Overview} />
+              <Route path='/patients' component={PatientList} />
+              <Route path='/calendar' component={Scheduler} />
+              <Route path='/staff' component={StaffList} />
+              <Route path='/dental_history' component={DentalHistory} />
+              <Route path='/dental_record' component={DentalRecord} />
+              <Route path='/patient_transaction' component={PatientTransaction} />
+              {/* <Route path='/' component={Overview} /> */}
 
               {/* <Scheduler /> */}
-            {/*   <DentalHistory /> */}
-            {/*   <DentalRecord /> */}
-            {/*   <PatientRegister /> */}
-            {/* <PatientTransaction /> */}
-            {/* <TransactionModal /> */}
-            {/*   <StaffList /> */}
-            {/*   <ProfileSetup /> */}
-            {/*   <Admin /> */}
+              {/*   <DentalHistory /> */}
+              {/*   <DentalRecord /> */}
+              {/*   <PatientRegister /> */}
+              {/* <PatientTransaction /> */}
+              {/* <TransactionModal /> */}
+              {/*   <StaffList /> */}
+              {/*   <ProfileSetup /> */}
+              {/*   <Admin /> */}
+            </ClickedItemContext.Provider>
           </main>
         </div>
         : user && user.has_profile === false ?
-        setLocation('/profile-setup')
+          setLocation('/profile-setup')
           :
           <Redirect to={'/login'} />
 
       }
-          {/* <Redirect to={'/profile-setup'} /> */}
+      {/* <Redirect to={'/profile-setup'} /> */}
 
       <Route path='/login' component={Login} />
       <Route path='/profile-setup' component={ProfileSetup} />

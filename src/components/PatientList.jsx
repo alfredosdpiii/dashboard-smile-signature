@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import 'regenerator-runtime/runtime';
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from './Table'
 import maleIcon from '../assets/icons/male-avatar.jpg'
@@ -9,6 +9,7 @@ import { useLocation } from "wouter";
 import PatientRegister from './PatientRegister';
 import DentalHistory from './DentalHistory';
 import PatientTransaction from './PatientTransaction';
+import { ClickedItemContext } from '../context/ClickedItemContext'
 
 
 
@@ -18,6 +19,9 @@ function PatientList() {
   const [selectedRows, setSelectedData] = useState([])
   const [selectedPatient, setSelectedPatient] = useState('')
   const [location, setLocation] = useLocation();
+
+  //context
+  const { item, setItem } = useContext(ClickedItemContext)
 
   const onSelectedRows = rows => {
     const mappedRows = rows.map(r => r.original);
@@ -36,6 +40,7 @@ function PatientList() {
   const handleRecordClick = (row) => {
     console.log(row.original)
     setSelectedPatient(row.original)
+    setItem(row.original)
     setLocation('/dental_history')
   }
 
