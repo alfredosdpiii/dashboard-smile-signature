@@ -57,63 +57,44 @@ const Admin = () => {
   }, [])
 
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: 'http://127.0.0.1:3001/report_patients'
-  //   }).then((res) => {
-  //     console.log(res)
-  //     const report = res.data
-  //     setTotalPatients(report.total)
-  //     setNewPatients(report.new)
-  //   })
-  // }, [])
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/report_patients'
+    }).then((res) => {
+      console.log(res)
+      const report = res.data
+      setTotalPatients(report.total)
+      setNewPatients(report.new)
+    })
+  }, [])
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: 'http://127.0.0.1:3001/report_appointments'
-  //   }).then((res) => {
-  //     console.log(res)
-  //     const report = res.data
-  //     setTotalAppointments(report.total)
-  //     setNewAppointments(report.new)
-  //   })
-  // }, [])
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/report_appointments'
+    }).then((res) => {
+      console.log(res)
+      const report = res.data
+      setTotalAppointments(report.total)
+      setNewAppointments(report.new)
+    })
+  }, [])
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: 'http://127.0.0.1:3001/report_transactions'
-  //   }).then((res) => {
-  //     console.log(res)
-  //     const report = res.data
-  //     setTotalTransactions(report.monthly_transactions)
-  //     setTotalSales(report.monthly_sales)
-  //   })
-  // }, [])
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:3001/report_transactions'
+    }).then((res) => {
+      console.log(res)
+      const report = res.data
+      setTotalTransactions(report.monthly_transactions)
 
-  // useEffect(() => {
-  //   if(isSubmitSuccessful) {
-  //     const values = getValues();
+      let nf = new Intl.NumberFormat()
+      setTotalSales(nf.format(report.monthly_sales))
+    })
+  }, [])
 
-  //     axios({
-  //       method: 'post',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       url: 'http://localhost:3001/current_user/create',
-  //       data:{      "user":{
-  //         "email": values.registerEmail,
-  //         "role": values.registerRole,
-  //         "password": values.password
-  //       }}
-  //     })
-  //     .then((res) => {
-  //       console.log(values)
-  //       console.log(res)
-  //       reset()
-  //     })
-  //   }
-  // },[isSubmitSuccessful])    
 
   const onSuggestHandler = (text) => {
     setText(text)
