@@ -5,7 +5,10 @@ import maleIcon from '../assets/icons/male-avatar.jpg'
 import femaleICon from '../assets/icons/female-avatar.webp'
 import { useState } from 'react';
 import axios from 'axios';
+import { useLocation } from "wouter";
 import PatientRegister from './PatientRegister';
+import DentalHistory from './DentalHistory';
+import PatientTransaction from './PatientTransaction';
 
 
 
@@ -14,6 +17,7 @@ function PatientList() {
   const [isAddingPatient, setIsAddingPatient] = useState(false)
   const [selectedRows, setSelectedData] = useState([])
   const [selectedPatient, setSelectedPatient] = useState('')
+  const [location, setLocation] = useLocation();
 
   const onSelectedRows = rows => {
     const mappedRows = rows.map(r => r.original);
@@ -32,11 +36,13 @@ function PatientList() {
   const handleRecordClick = (row) => {
     console.log(row.original)
     setSelectedPatient(row.original)
+    setLocation('/dental_history')
   }
 
   const handleTransactionClick = (row) => {
     console.log(row.original)
     setSelectedPatient(row.original)
+    setLocation('/patient_transaction')
   }
 
   const data = patients
@@ -91,19 +97,29 @@ function PatientList() {
     {
       id:"selection",
       Header: ({getToggleAllRowsSelectedProps }) =>(
-        <div>Dental History</div>
+        <div className='flex justify-end w-full'>
+          <p>Dental History</p>
+        </div>
       ),
       Cell: ({row})=>(
-        <button className ='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg' onClick={() => handleRecordClick(row)}>Records</button>
+        <div className='flex justify-center w-full'>
+          <button className ='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-6 border border-blue-500 hover:border-transparent rounded-lg' onClick={() => handleRecordClick(row)}>View</button>
+        </div>
+        
       ),
     },
     {
       id:"selection2",
       Header: ({getToggleAllRowsSelectedProps }) =>(
-        <div>Sales History</div>
+        <div className='flex justify-start w-full'>
+          <p>Sales Records</p>
+        </div>
       ),
       Cell: ({row})=>(
-        <button className ='bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded-lg' onClick={() => handleTransactionClick(row)}>Transactions</button>
+        <div className='flex justify-start w-full'>
+          <button className ='bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-6 border border-emerald-500 hover:border-transparent rounded-lg' onClick={() => handleTransactionClick(row)}>View</button>
+        </div>
+        
       ),
     }
   ], [])
