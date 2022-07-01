@@ -5,11 +5,16 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios'
 import { UserContext } from '../context/UserContext'
 import {login} from '../utils/login.jsx'
+import {Redirect} from 'wouter'
+import { useLocation } from "wouter";
+// import {Navigate} from 'react-router-dom'
 
 
 const Login = () => {
   const [formError, setFormError] = useState(false);
   const { user, setUser } = useContext(UserContext)
+  const [location, setLocation] = useLocation();
+
 
   const {
     register,
@@ -24,6 +29,8 @@ const Login = () => {
   const handleLogin = async (values) => {
     const user = await login(values)
     setUser(user);
+    // <Navigate to='/patients'/> 
+    setLocation('/patients')
     console.log(user)
   }
 
