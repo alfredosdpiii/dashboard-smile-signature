@@ -9,6 +9,7 @@ import DentalRecord from './components/DentalRecord';
 import PatientRegister from './components/PatientRegister';
 import PatientTransaction from './components/PatientTransaction';
 import TransactionModal from './components/TransactionModal';
+import Overview from './components/Overview';
 import StaffList from './components/StaffList';
 import StaffProfile from './components/StaffProfile';
 import ProfileSetup from './components/ProfileSetup';
@@ -29,9 +30,13 @@ function App() {
         <div className="flex flex-row h-screen w-screen">
           <Sidebar />
           <main role="main" className="w-screen pt-1 px-2">
+            <Route path='/' component={Overview} />
             <Route path='/patients' component={PatientList} />
             <Route path='/calendar' component={Scheduler} />
             <Route path='/staff' component={StaffList} />
+            <Route path='/dental_history' component={DentalHistory} />
+            <Route path='/dental_record' component={DentalRecord} />
+            <Route path='/patient_transaction' component={PatientTransaction} />
             {/* <Route path='/' component={Overview} /> */}
 
               {/* <Scheduler /> */}

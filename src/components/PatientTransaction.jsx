@@ -105,7 +105,7 @@ const PatientTransaction = () => {
 
   return (
     <>
-      <div className='h-[60.5em] w-[109.3em] bg-gray-100'>
+      <div className='h-full w-full bg-gray-100'>
         <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
             <div className="flex flex-row justify-between p-2 mb-10">
               <h1 className="text-2xl font-semibold">TRANSACTIONS</h1>
