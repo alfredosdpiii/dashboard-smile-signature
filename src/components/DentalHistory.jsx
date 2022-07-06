@@ -2,16 +2,18 @@ import React, { useState, useEffect, useContext } from 'react'
 import Table, { AvatarCell } from './Table'
 import recordIcon from '../assets/icons/dental-record-icon.jpg'
 import { ClickedItemContext } from '../context/ClickedItemContext';
+import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 import dayjs from 'dayjs'
 
 const DentalHistory = () => {
   const [dentalRecords, setDentalRecords] = useState([])
-  const {item, setItem} = useContext(ClickedItemContext)
+  const { item, setItem } = useContext(ClickedItemContext)
+  const { user } = useContext(UserContext)
 
   console.log(item)
 
-  const columns = React.useMemo(() => [ 
+  const columns = React.useMemo(() => [
     {
       Header: "ID",
       accessor: 'id'
@@ -27,37 +29,37 @@ const DentalHistory = () => {
       accessor: 'created_at',
       Cell: ({ row }) => {
         return (
-             dayjs(row.original.created_at).format('DD/MM/YYYY')
-              );
-       }
+          dayjs(row.original.created_at).format('DD/MM/YYYY')
+        );
+      }
     },
     {
       Header: "Services",
       accessor: 'services',
       Cell: ({ row }) => {
         return (
-             row.original.services
-                .map((service) => (
-                    <div key={service}>
-                        <h4>{service}</h4>
-                    </div>
-                ))
-              );
-       }
+          row.original.services
+            .map((service) => (
+              <div key={service}>
+                <h4>{service}</h4>
+              </div>
+            ))
+        );
+      }
     },
     {
       Header: "Tooth",
       accessor: 'tooth',
       Cell: ({ row }) => {
         return (
-             row.original.tooth
-                .map((t) => (
-                    <div key={t}>
-                        <h4>{t}</h4>
-                    </div>
-                ))
-              );
-       }
+          row.original.tooth
+            .map((t) => (
+              <div key={t}>
+                <h4>{t}</h4>
+              </div>
+            ))
+        );
+      }
     },
     {
       Header: "Branch",
@@ -71,8 +73,8 @@ const DentalHistory = () => {
           <div>
             {row.original.remarks}
           </div>
-              );
-       }
+        );
+      }
     }
   ], [])
 
@@ -81,7 +83,11 @@ const DentalHistory = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://127.0.0.1:3001/dental_records/${item.id}`
+      url: `http://127.0.0.1:3001/dental_records/${item.id}`,
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
+
     }).then((res) => {
       const dental_records = res.data;
       console.log(dental_records)
@@ -93,22 +99,22 @@ const DentalHistory = () => {
         }
         new_dental_records.push(new_object)
       })
-      
+
       setDentalRecords(new_dental_records);
     })
   }, [])
-  
+
   return (
     <>
       <div className='h-full w-full bg-gray-100'>
         <main className="w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-            <div className="flex flex-row justify-between p-2 mb-10">
-              <h1 className="text-2xl font-semibold">DENTAL HISTORY 🦷</h1>
-            </div>
-            <div className="mt-6">
-              <Table columns={columns} data={data} label="Create Record"/>
-            </div>
-          </main>
+          <div className="flex flex-row justify-between p-2 mb-10">
+            <h1 className="text-2xl font-semibold">DENTAL HISTORY 🦷</h1>
+          </div>
+          <div className="mt-6">
+            <Table columns={columns} data={data} label="Create Record" />
+          </div>
+        </main>
       </div>
     </>
   )

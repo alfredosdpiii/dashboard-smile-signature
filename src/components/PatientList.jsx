@@ -10,6 +10,7 @@ import PatientRegister from './PatientRegister';
 import DentalHistory from './DentalHistory';
 import PatientTransaction from './PatientTransaction';
 import { ClickedItemContext } from '../context/ClickedItemContext'
+import { UserContext } from '../context/UserContext'
 
 
 
@@ -22,6 +23,7 @@ function PatientList() {
 
   //context
   const { item, setItem } = useContext(ClickedItemContext)
+  const { user } = useContext(UserContext)
 
   const onSelectedRows = rows => {
     const mappedRows = rows.map(r => r.original);
@@ -41,14 +43,15 @@ function PatientList() {
     console.log(row.original)
     setSelectedPatient(row.original)
     setItem(row.original)
-    setLocation('/dental_history')
+    // setLocation('/dental_history')
+    setLocation(`/dental_history/${row.original.id}`)
   }
 
   const handleTransactionClick = (row) => {
     console.log(row.original)
     setSelectedPatient(row.original)
     setItem(row.original)
-    setLocation('/patient_transaction')
+    setLocation(`/patient_transaction/${row.original.id}`)
   }
 
   const data = patients
@@ -56,7 +59,10 @@ function PatientList() {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/patient_records'
+      url: 'http://127.0.0.1:3001/patient_records',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     }).then((res) => {
       const patients = res.data;
       const new_patients = []

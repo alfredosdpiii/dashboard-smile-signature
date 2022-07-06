@@ -1,17 +1,22 @@
 import React from 'react'
 import toothChart4 from '../assets/images/tooth-chart-4.jpg'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../context/UserContext'
 import axios from 'axios';
 
 const DentalRecord = () => {
   const [patients, setPatients] = useState([])
   const [suggestions, setSuggestions] = useState([])
   const [text, setText] = useState('')
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/patient_records'
+      url: 'http://127.0.0.1:3001/patient_records',
+      headers:{
+        'Authorization': `Bearer ${user.token}`
+      }
     }).then((res) => {
       const patients = res.data;
       // const patient_names = []
