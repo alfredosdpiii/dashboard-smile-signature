@@ -40,9 +40,9 @@ function App() {
               <Route path='/calendar' component={Scheduler} />
               <Route path='/staff' component={StaffList} />
               <Route path='/obligations' component={Obligations} />
-              <Route path='/dental_history' component={DentalHistory} />
-              <Route path='/dental_record' component={DentalRecord} />
-              <Route path='/patient_transaction' component={PatientTransaction} />
+              <Route path='/dental_history/:id' component={DentalHistory} />
+              <Route path='/dental_record/:id' component={DentalRecord} />
+              <Route path='/patient_transaction/:id' component={PatientTransaction} />
               <Route path='/admin' component={Admin} />
 
             </ClickedItemContext.Provider>
