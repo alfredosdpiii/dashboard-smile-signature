@@ -132,22 +132,22 @@ const Admin = () => {
   }
         
 
-  const handleRegister = async (values) => {
-    const response = await register_user(values)
-
-    if(isSubmitSuccessful) {
-      reset()
-    }
-  }
-
-  const handleRemove = async (values) => {
-    const response = await remove_user(values)
-
-    console.log(response)
-    setStaff(response[0])
-    setText()
-
-  }
+  // const handleRegister = async (values) => {
+  //   const response = await register_user(values)
+  //
+  //   if(isSubmitSuccessful) {
+  //     reset()
+  //   }
+  // }
+  //
+  // const handleRemove = async (values) => {
+  //   const response = await remove_user(values)
+  //
+  //   console.log(response)
+  //   setStaff(response[0])
+  //   setText()
+  //
+  // }
 
   return (
     <>
