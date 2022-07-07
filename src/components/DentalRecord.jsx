@@ -13,7 +13,7 @@ const DentalRecord = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/patient_records',
+      url: 'smile-sig-api.herokuapp.com/patient_records',
       headers:{
         'Authorization': ` ${user.token}`
       }

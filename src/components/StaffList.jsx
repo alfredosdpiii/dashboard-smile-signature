@@ -30,7 +30,7 @@ const StaffList = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/staff'
+      url: 'smile-sig-api.herokuapp.com/staff'
     }).then((res) => {
       const users = res.data;
       const staff = []

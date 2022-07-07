@@ -20,7 +20,7 @@ const Overview = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/appointments_today'
+      url: 'smile-sig-api.herokuapp.com/appointments_today'
     }).then((res) => {
       console.log(res)
       const appointments = res.data

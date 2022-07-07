@@ -29,7 +29,7 @@ const PatientRegister = ({ setIsAddingPatient }) => {
       const values = getValues();
 
       axios
-        .post('http://127.0.0.1:3001/patient_records/create', {
+        .post('smile-sig-api.herokuapp.com/patient_records/create', {
           full_name: values.fullName,
           gender: values.gender,
           date_of_birth: dayjs(values.dateInput).format('DD/MM/YYYY'),

@@ -47,7 +47,7 @@ const Scheduler = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/calendar_events'
+      url: 'smile-sig-api.herokuapp.com/calendar_events'
     }).then((res) => {
       const events = res.data;
       const formatted_events = []
