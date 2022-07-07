@@ -84,7 +84,7 @@ const PatientTransaction = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `smile-sig-api.herokuapp.com/patient_record/${item.id}/transactions`
+      url: `https://smile-sig-api.herokuapp.com/patient_record/${item.id}/transactions`
     }).then((res) => {
       console.log(res)
       const transactions = res.data;

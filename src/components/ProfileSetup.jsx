@@ -34,7 +34,7 @@ const ProfileSetup = () => {
       const values = getValues();
 
       axios
-        .post('smile-sig-api.herokuapp.com/profile/create', {
+        .post('https://smile-sig-api.herokuapp.com/profile/create', {
           first_name: values.firstName,
           middle_name: values.middleName,
           last_name: values.lastName,

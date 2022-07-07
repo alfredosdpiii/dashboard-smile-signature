@@ -10,7 +10,7 @@ const Obligations = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'smile-sig-api.herokuapp.com/obligations'
+      url: 'https://smile-sig-api.herokuapp.com/obligations'
     }).then((res) => {
       setObligations(res.data)
       console.log(res.data)

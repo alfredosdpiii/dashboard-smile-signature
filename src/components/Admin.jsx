@@ -52,7 +52,7 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'smile-sig-api.herokuapp.com/staff',
+      url: 'https://smile-sig-api.herokuapp.com/staff',
       headers: {
         'Authorization': ` ${user.token}`
       }
@@ -67,7 +67,7 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'smile-sig-api.herokuapp.com/report_patients',
+      url: 'https://smile-sig-api.herokuapp.com/report_patients',
       headers: {
         'Authorization': ` ${user.token}`
       }
@@ -82,7 +82,7 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'smile-sig-api.herokuapp.com/report_appointments',
+      url: 'https://smile-sig-api.herokuapp.com/report_appointments',
       headers: {
         'Authorization': ` ${user.token}`
       }
@@ -97,7 +97,7 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'smile-sig-api.herokuapp.com/report_transactions',
+      url: 'https://smile-sig-api.herokuapp.com/report_transactions',
       headers: {
         'Authorization': ` ${user.token}`
       }

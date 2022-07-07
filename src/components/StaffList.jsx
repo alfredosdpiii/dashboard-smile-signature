@@ -30,7 +30,7 @@ const StaffList = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'smile-sig-api.herokuapp.com/staff'
+      url: 'https://smile-sig-api.herokuapp.com/staff'
     }).then((res) => {
       const users = res.data;
       const staff = []

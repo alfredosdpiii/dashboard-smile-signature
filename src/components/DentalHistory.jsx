@@ -83,7 +83,7 @@ const DentalHistory = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `smile-sig-api.herokuapp.com/dental_records/${item.id}`,
+      url: `https://smile-sig-api.herokuapp.com/dental_records/${item.id}`,
       headers: {
         'Authorization': ` ${user.token}`
       }

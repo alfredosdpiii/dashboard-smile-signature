@@ -11,7 +11,7 @@ const StaffProfile = ({ setIsSelectingStaff, staff }) => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `smile-sig-api.herokuapp.com/profile/${staff.id}`
+      url: `https://smile-sig-api.herokuapp.com/profile/${staff.id}`
     }).then((res) => {
       console.log(res.data.profile)
       const data = res.data.profile;
