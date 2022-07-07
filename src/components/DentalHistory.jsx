@@ -117,12 +117,12 @@ const DentalHistory = () => {
             <h1 className="text-2xl font-semibold">DENTAL HISTORY 🦷</h1>
           </div>
           <div className="mt-6">
-            <Table columns={columns} data={data} label="Create Record" />
+            <Table columns={columns} data={data} label="Create Record" handleClick={handleRecord}/>
           </div>
         </main>
       </div>
       {isAddingRecord && (
-        <DentalRecord setIsAddingPatient={setIsAddingRecord} />
+        <DentalRecord setIsAddingPatient={setIsAddingRecord} item={item}/>
       )}
     </>
   )

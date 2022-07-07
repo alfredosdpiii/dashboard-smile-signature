@@ -3,16 +3,18 @@ import toothChart4 from '../assets/images/tooth-chart-4.jpg'
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../context/UserContext'
 import axios from 'axios';
+import { ClickedItemContext } from '../context/ClickedItemContext';
 
 const DentalRecord = () => {
   const [patients, setPatients] = useState([])
   const [suggestions, setSuggestions] = useState([])
   const [text, setText] = useState('')
   const { user } = useContext(UserContext)
+  const { item } = useContext(ClickedItemContext)
 
   useEffect(() => {
     axios({
-      method: 'get',
+      method: 'post',
       url: 'https://smile-sig-api.herokuapp.com/patient_records',
       headers:{
         'Authorization': ` ${user.token}`
