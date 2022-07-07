@@ -5,11 +5,16 @@ import { ClickedItemContext } from '../context/ClickedItemContext';
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import DentalRecord from './DentalRecord'
 
 const DentalHistory = () => {
   const [dentalRecords, setDentalRecords] = useState([])
+  const [isAddingRecord, setIsAddingRecord] = useState(false)
   const { item, setItem } = useContext(ClickedItemContext)
   const { user } = useContext(UserContext)
+  const handleRecord = () =>{
+    setIsAddingRecord(true)
+  }
 
   console.log(item)
 
@@ -116,6 +121,9 @@ const DentalHistory = () => {
           </div>
         </main>
       </div>
+      {isAddingRecord && (
+        <DentalRecord setIsAddingPatient={setIsAddingRecord} />
+      )}
     </>
   )
 }
