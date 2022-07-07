@@ -61,7 +61,7 @@ function PatientList() {
       method: 'get',
       url: 'http://127.0.0.1:3001/patient_records',
       headers: {
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': ` ${user.token}`
       }
     }).then((res) => {
       const patients = res.data;

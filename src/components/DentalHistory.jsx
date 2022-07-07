@@ -85,7 +85,7 @@ const DentalHistory = () => {
       method: 'get',
       url: `http://127.0.0.1:3001/dental_records/${item.id}`,
       headers: {
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': ` ${user.token}`
       }
 
     }).then((res) => {

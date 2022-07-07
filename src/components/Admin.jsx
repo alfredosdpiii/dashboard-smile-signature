@@ -54,7 +54,7 @@ const Admin = () => {
       method: 'get',
       url: 'http://127.0.0.1:3001/staff',
       headers: {
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': ` ${user.token}`
       }
     }).then((res) => {
       const users = res.data;
@@ -69,7 +69,7 @@ const Admin = () => {
       method: 'get',
       url: 'http://127.0.0.1:3001/report_patients',
       headers: {
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': ` ${user.token}`
       }
     }).then((res) => {
       console.log(res)
@@ -84,7 +84,7 @@ const Admin = () => {
       method: 'get',
       url: 'http://127.0.0.1:3001/report_appointments',
       headers: {
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': ` ${user.token}`
       }
     }).then((res) => {
       console.log(res)
@@ -99,7 +99,7 @@ const Admin = () => {
       method: 'get',
       url: 'http://127.0.0.1:3001/report_transactions',
       headers: {
-        'Authorization': `Bearer ${user.token}`
+        'Authorization': ` ${user.token}`
       }
     }).then((res) => {
       console.log(res)

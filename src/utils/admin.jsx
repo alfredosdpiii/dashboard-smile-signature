@@ -11,7 +11,7 @@ export const register_user = async (values) => {
     headers: { 'Content-Type': 'application/json' },
     url: 'http://smile-sig-api.herokuapp.com/current_user/create',
     headers:{
-      'Authorization': `Bearer ${user.token}`
+      'Authorization': ` ${user.token}`
     },
     data:{      "user":{
       "email": values.registerEmail,
@@ -36,7 +36,7 @@ export const remove_user = async (values) => {
     headers: { 'Content-Type': 'application/json' },
     url: 'http://smile-sig-api.herokuapp.com/current_user/delete',
     headers:{
-      'Authorization': `Bearer ${user.token}`
+      'Authorization': ` ${user.token}`
     },
     data:{ 
       "email": values.removeEmail
