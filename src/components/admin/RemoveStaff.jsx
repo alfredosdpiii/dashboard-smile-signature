@@ -12,7 +12,7 @@ const RemoveStaff = ({setIsRemovingStaff, staff}) => {
     axios({
       method: 'get',
       headers: { 'Content-Type': 'application/json' },
-      url: 'http://localhost:3001/staff'
+      url: 'http://smile-sig-api.herokuapp.com/staff'
     })
     .then((res) => {
       console.log(res)
@@ -39,7 +39,7 @@ const RemoveStaff = ({setIsRemovingStaff, staff}) => {
         axios({
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
-          url: 'http://localhost:3001/user/delete',
+          url: 'http://smile-sig-api.herokuapp.com/user/delete',
           data: {    
                 "id": values.id
              }

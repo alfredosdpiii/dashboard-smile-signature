@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
 import { register_user, remove_user } from '../utils/admin.jsx'
@@ -7,6 +7,7 @@ import RemoveStaff from './admin/RemoveStaff.jsx';
 import AddService from './admin/AddService.jsx';
 import RemoveService from './admin/RemoveService.jsx';
 import peso from '../assets/icons/peso-sign.png'
+import { UserContext } from '../context/UserContext'
 
 const Admin = () => {
   const [totalPatients, setTotalPatients] = useState('')
@@ -24,6 +25,8 @@ const Admin = () => {
   const [isRemovingStaff, setIsRemovingStaff] = useState(false)
   const [isAddingService, setIsAddingService] = useState(false)
   const [isRemovingService, setIsRemovingService] = useState(false)
+
+  const { user } = useContext(UserContext)
 
   const {
     register,
@@ -49,7 +52,10 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/staff'
+      url: 'http://127.0.0.1:3001/staff',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     }).then((res) => {
       const users = res.data;
       console.log(users)
@@ -61,7 +67,10 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/report_patients'
+      url: 'http://127.0.0.1:3001/report_patients',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     }).then((res) => {
       console.log(res)
       const report = res.data
@@ -73,7 +82,10 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/report_appointments'
+      url: 'http://127.0.0.1:3001/report_appointments',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     }).then((res) => {
       console.log(res)
       const report = res.data
@@ -85,7 +97,10 @@ const Admin = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://127.0.0.1:3001/report_transactions'
+      url: 'http://127.0.0.1:3001/report_transactions',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     }).then((res) => {
       console.log(res)
       const report = res.data

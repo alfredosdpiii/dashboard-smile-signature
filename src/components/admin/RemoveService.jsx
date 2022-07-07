@@ -23,7 +23,7 @@ const RemoveService = ({setIsRemovingService}) => {
       axios({
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
-        url: 'http://localhost:3001/services/create',
+        url: 'http://smile-sig-api.herokuapp.com/services/create',
         data:{ "name": values.name }
       })
       .then((res) => {

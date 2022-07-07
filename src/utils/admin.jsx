@@ -1,11 +1,18 @@
 import axios from "axios";
+import {useContext} from 'react'
+import { UserContext } from '../context/UserContext'
+
+const {user} = useContex(UserContext)
 
 export const register_user = async (values) => {
 
   const response = axios({
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    url: 'http://localhost:3001/current_user/create',
+    url: 'http://smile-sig-api.herokuapp.com/current_user/create',
+    headers:{
+      'Authorization': `Bearer ${user.token}`
+    },
     data:{      "user":{
       "email": values.registerEmail,
       "role": values.registerRole,
@@ -27,7 +34,10 @@ export const remove_user = async (values) => {
   const response = axios({
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    url: 'http://localhost:3001/current_user/delete',
+    url: 'http://smile-sig-api.herokuapp.com/current_user/delete',
+    headers:{
+      'Authorization': `Bearer ${user.token}`
+    },
     data:{ 
       "email": values.removeEmail
     }

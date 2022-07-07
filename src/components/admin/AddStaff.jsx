@@ -24,7 +24,7 @@ const AddStaff = ({setIsAddingStaff}) => {
       axios({
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
-        url: 'http://localhost:3001/current_user/create',
+        url: 'http://smile-sig-api.herokuapp.com/current_user/create',
         data:{    
             "user":{
                 "email": values.registerEmail,
