@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
-import { register_user, remove_user } from '../utils/admin.jsx'
+// import { register_user, remove_user } from '../utils/admin.jsx'
 import AddStaff from './admin/AddStaff.jsx';
 import RemoveStaff from './admin/RemoveStaff.jsx';
 import AddService from './admin/AddService.jsx';
